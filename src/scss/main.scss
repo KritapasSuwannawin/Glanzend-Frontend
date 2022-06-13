@@ -1,0 +1,62 @@
+@import './functions';
+@import './mixins';
+@import './variables';
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans-serif;
+  box-sizing: border-box;
+  background-color: $color-primary-light;
+}
+
+@mixin title-style {
+  font-family: $font-serif;
+  font-size: 8rem;
+  line-height: 115%;
+  letter-spacing: 0.02em;
+  color: $color-secondary;
+
+  @media (max-width: 1000px) {
+    font-size: 7rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 6rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 5rem;
+  }
+}
+
+@mixin btn-style {
+  font-family: $font-sans-serif;
+  background-color: $color-primary;
+  padding: 1.75rem 4rem;
+  font-weight: 600;
+  line-height: 150%;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 800px) {
+    padding: 1.5rem 3.5rem;
+  }
+}

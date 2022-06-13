@@ -1,0 +1,77 @@
+@import '../scss/main.scss';
+
+.product-item-card {
+  &__img {
+    width: 100%;
+    padding-top: 118%;
+    background-color: $box-color;
+  }
+
+  &__collection {
+    font-family: $font-sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 150%;
+    color: $color-primary;
+    margin-top: 1rem;
+    text-transform: capitalize;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  &__name {
+    font-family: $font-sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 150%;
+    color: $color-secondary;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__size-container {
+    display: flex;
+    column-gap: 1.7rem;
+
+    .size {
+      font-family: $font-sans-serif;
+      font-size: 1.4rem;
+      line-height: 150%;
+      color: $color-secondary;
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__price {
+    display: flex;
+    column-gap: 1.1rem;
+
+    &--icon {
+      width: 3rem;
+      padding: 0.78rem 0.73rem;
+      background-color: $color-secondary;
+    }
+
+    &--amount {
+      font-family: $font-sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 150%;
+      color: $color-secondary;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &__name {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    &__name {
+      font-size: 1.8rem;
+    }
+  }
+}

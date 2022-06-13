@@ -1,0 +1,113 @@
+@import '../scss/main.scss';
+
+.product {
+  overflow-x: hidden;
+
+  .main-container {
+    background-color: #fff;
+
+    .main {
+      @include section-style;
+
+      &__title {
+        @include title-style;
+        padding-top: 6rem;
+        margin-bottom: 10.5rem;
+        margin-left: -0.3rem;
+      }
+
+      &__content {
+        display: flex;
+        column-gap: 13rem;
+
+        .right {
+          width: 100%;
+
+          &__item-container {
+            display: flex;
+            column-gap: 3.7rem;
+            row-gap: 3.85rem;
+            flex-wrap: wrap;
+            margin-bottom: 6.15rem;
+
+            .item {
+              width: calc((100% - 7.4rem) / 3);
+            }
+          }
+
+          &__load-more-btn {
+            @include btn-style;
+            font-size: 1.8rem;
+            background-color: transparent;
+            color: $color-primary;
+            margin: 0 auto 6.32rem auto;
+            border: 1px solid $color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .main-container {
+      .main {
+        &__content {
+          column-gap: 10rem;
+
+          .right {
+            &__load-more-btn {
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .main-container {
+      .main {
+        &__content {
+          column-gap: 9rem;
+
+          .right {
+            &__item-container {
+              .item {
+                width: calc((100% - 3.7rem) / 2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .main-container {
+      .main {
+        &__content {
+          column-gap: 8rem;
+
+          .right {
+            &__item-container {
+              .item {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .main-container {
+      .main {
+        &__content {
+          flex-direction: column;
+          row-gap: 3rem;
+        }
+      }
+    }
+  }
+}

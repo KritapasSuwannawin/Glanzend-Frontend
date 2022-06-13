@@ -1,0 +1,32 @@
+@mixin section-style {
+  max-width: 1440px;
+  padding-left: 8.4rem;
+  padding-right: 8.4rem;
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    padding-left: 7rem;
+    padding-right: 7rem;
+  }
+
+  @media (max-width: 1000px) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
+  @media (max-width: 800px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @media (max-width: 600px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@mixin flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

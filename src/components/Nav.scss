@@ -1,0 +1,126 @@
+@import '../scss/main.scss';
+
+.nav-container {
+  background-color: $color-primary-light;
+
+  .nav {
+    @include section-style;
+    padding-top: 6.4rem;
+    padding-bottom: 6rem;
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      flex: 1;
+    }
+
+    &__logo {
+      font-family: $font-serif;
+      font-weight: 700;
+      font-size: 3.6rem;
+      letter-spacing: 0.02em;
+      color: $color-primary;
+      text-decoration: none;
+      padding-bottom: 0.5rem;
+    }
+
+    &__link-container {
+      @include flex-row-center;
+      column-gap: 7rem;
+
+      .nav-link {
+        font-family: $font-sans-serif;
+        font-size: 1.8rem;
+        color: $color-secondary;
+        text-decoration: none;
+
+        &.active {
+          font-weight: 600;
+        }
+      }
+    }
+
+    &__icon-container {
+      @include flex-row-center;
+      justify-content: flex-end;
+      column-gap: 3.5rem;
+
+      .icon {
+        height: 2.2rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .nav {
+      & > * {
+        flex: unset;
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .nav {
+      &__logo {
+        font-size: 3rem;
+      }
+
+      &__link-container {
+        column-gap: 3rem;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .nav {
+      &__logo {
+        font-size: 2rem;
+      }
+
+      &__link-container {
+        column-gap: 1.5rem;
+
+        .nav-link {
+          font-size: 1.4rem;
+        }
+      }
+
+      &__icon-container {
+        column-gap: 2rem;
+
+        .icon {
+          height: 1.8rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav {
+      &__logo {
+        font-size: 1.6rem;
+      }
+
+      &__link-container {
+        column-gap: 1rem;
+
+        .nav-link {
+          font-size: 1.2rem;
+        }
+      }
+
+      &__icon-container {
+        column-gap: 1rem;
+        padding-top: 0.3rem;
+
+        .icon {
+          height: 1.2rem;
+        }
+      }
+    }
+  }
+}
