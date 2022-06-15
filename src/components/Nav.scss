@@ -20,7 +20,6 @@
       font-size: 3.6rem;
       letter-spacing: 0.02em;
       color: $color-primary;
-      text-decoration: none;
       padding-bottom: 0.5rem;
     }
 
@@ -32,7 +31,6 @@
         font-family: $font-sans-serif;
         font-size: 1.8rem;
         color: $color-secondary;
-        text-decoration: none;
 
         &.active {
           font-weight: 600;

@@ -5,6 +5,7 @@
     width: 100%;
     padding-top: 118%;
     background-color: $box-color;
+    display: block;
   }
 
   &__collection {
@@ -15,7 +16,6 @@
     color: $color-primary;
     margin-top: 1rem;
     text-transform: capitalize;
-    text-decoration: none;
     display: inline-block;
   }
 
@@ -29,6 +29,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
   }
 
   &__size-container {

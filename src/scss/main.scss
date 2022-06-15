@@ -21,6 +21,11 @@ body {
   background-color: $color-primary-light;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @mixin title-style {
   font-family: $font-serif;
   font-size: 8rem;
@@ -36,21 +41,36 @@ body {
     font-size: 6rem;
   }
 
-  @media (max-width: 800px) {
-    font-size: 5rem;
+  @media (max-width: 600px) {
+    font-size: 4rem;
   }
 }
 
-@mixin btn-style {
+@mixin title-page-style {
+  @include title-style;
+  padding-top: 6rem;
+  margin-bottom: 10rem;
+  margin-left: -0.3rem;
+}
+
+@mixin btn-style($style, $font-size) {
   font-family: $font-sans-serif;
-  background-color: $color-primary;
   padding: 1.75rem 4rem;
   font-weight: 600;
   line-height: 150%;
-  text-decoration: none;
   display: block;
   width: fit-content;
-  color: #fff;
+  font-size: $font-size;
+
+  @if $style == 'regular' {
+    color: $color-primary;
+    border: 1px solid $color-primary;
+  }
+
+  @if $style == 'solid' {
+    color: #fff;
+    background-color: $color-primary;
+  }
 
   &:hover {
     cursor: pointer;

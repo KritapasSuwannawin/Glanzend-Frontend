@@ -1,8 +1,6 @@
 @import '../scss/main.scss';
 
 .product {
-  overflow-x: hidden;
-
   .main-container {
     background-color: #fff;
 
@@ -10,10 +8,7 @@
       @include section-style;
 
       &__title {
-        @include title-style;
-        padding-top: 6rem;
-        margin-bottom: 10.5rem;
-        margin-left: -0.3rem;
+        @include title-page-style;
       }
 
       &__content {
@@ -36,12 +31,8 @@
           }
 
           &__load-more-btn {
-            @include btn-style;
-            font-size: 1.8rem;
-            background-color: transparent;
-            color: $color-primary;
+            @include btn-style('regular', 1.8rem);
             margin: 0 auto 6.32rem auto;
-            border: 1px solid $color-primary;
           }
         }
       }

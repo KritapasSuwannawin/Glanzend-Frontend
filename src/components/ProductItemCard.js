@@ -31,11 +31,13 @@ function ProductItemCard(props) {
 
   return (
     <div className="product-item-card">
-      <div className="product-item-card__img"></div>
+      <Link to={`/product/${id}`} className="product-item-card__img"></Link>
       <Link to={`/product?collection_id=${collectionID}`} className="product-item-card__collection">
         {mapCollectionIDToName(collectionID)}
       </Link>
-      <p className="product-item-card__name">{name}</p>
+      <Link to={`/product/${id}`} className="product-item-card__name">
+        {name}
+      </Link>
       <div className="product-item-card__size-container">
         {sizeIDArr.map((sizeID, i) => (
           <p className="size" key={i}>

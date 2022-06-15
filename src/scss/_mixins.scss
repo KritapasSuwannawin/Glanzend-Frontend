@@ -1,27 +1,56 @@
-@mixin section-style {
-  max-width: 1440px;
-  padding-left: 8.4rem;
-  padding-right: 8.4rem;
+@mixin section-style($style: 'normal') {
   margin: 0 auto;
 
-  @media (max-width: 1200px) {
-    padding-left: 7rem;
-    padding-right: 7rem;
+  @if ($style == 'normal') {
+    max-width: 1440px;
+    padding-left: 8.4rem;
+    padding-right: 8.4rem;
+
+    @media (max-width: 1200px) {
+      padding-left: 7rem;
+      padding-right: 7rem;
+    }
+
+    @media (max-width: 1000px) {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+
+    @media (max-width: 800px) {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+
+    @media (max-width: 600px) {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
   }
 
-  @media (max-width: 1000px) {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-
-  @media (max-width: 800px) {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
-  @media (max-width: 600px) {
+  @if ($style == 'wide') {
+    max-width: 1520px;
     padding-left: 4rem;
     padding-right: 4rem;
+
+    @media (max-width: 1200px) {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+    }
+
+    @media (max-width: 1000px) {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    @media (max-width: 800px) {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 }
 

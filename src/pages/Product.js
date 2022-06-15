@@ -41,8 +41,6 @@ function Product(props) {
 
     const offsetLimit = `${search.length > 0 ? '&' : '?'}offset=${offset}&limit=${view}`;
 
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/api/product${search}${offsetLimit}`);
-
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product${search}${offsetLimit}`, {
       method: 'GET',
       headers: {
