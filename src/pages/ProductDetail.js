@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import './ProductDetail.scss';
 
 function ProductDetail(props) {
-  const { id } = useParams();
+  const { id: productID } = useParams();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,6 +20,8 @@ function ProductDetail(props) {
   const categoryArr = useSelector((store) => store.resource.categoryArr);
   const colorArr = useSelector((store) => store.resource.colorArr);
   const sizeArr = useSelector((store) => store.resource.sizeArr);
+
+  const accountID = useSelector((store) => store.account.id);
 
   const [name, setName] = useState();
   const [price, setPrice] = useState();
@@ -46,7 +48,7 @@ function ProductDetail(props) {
         .then((json) => {
           const { status, data, message } = json;
 
-          if (status !== 'success') {
+          if (status === 'error') {
             throw new Error(message);
           }
 
@@ -68,7 +70,7 @@ function ProductDetail(props) {
         .then((json) => {
           const { status, data, message } = json;
 
-          if (status !== 'success') {
+          if (status === 'error') {
             throw new Error(message);
           }
 
@@ -81,7 +83,7 @@ function ProductDetail(props) {
   }, [dispatch, categoryArr, colorArr]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${productID}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ function ProductDetail(props) {
       .then((json) => {
         const { status, data, message } = json;
 
-        if (status !== 'success') {
+        if (status === 'error') {
           throw new Error(message);
         }
 
@@ -116,7 +118,7 @@ function ProductDetail(props) {
         setSizeID(sizeIDArr[0]);
       })
       .catch((err) => console.log(err));
-  }, [id]);
+  }, [productID]);
 
   useEffect(() => {
     if (!categoryID) {
@@ -133,15 +135,15 @@ function ProductDetail(props) {
       .then((json) => {
         const { status, data, message } = json;
 
-        if (status !== 'success') {
+        if (status === 'error') {
           throw new Error(message);
         }
 
         const { productArr } = data;
-        setSimilarProductArr(productArr.filter((product) => product.id !== Number(id)).slice(0, 4));
+        setSimilarProductArr(productArr.filter((product) => product.id !== Number(productID)).slice(0, 4));
       })
       .catch((err) => console.log(err));
-  }, [categoryID, id]);
+  }, [categoryID, productID]);
 
   function getCategoryNameFromID(id) {
     return categoryArr.find((cat) => cat.id === id).name;
@@ -170,6 +172,24 @@ function ProductDetail(props) {
   function minusQuantityClickHandler() {
     if (quantity > 1) {
       setQuantity((quantity) => quantity - 1);
+    }
+  }
+
+  function addToWishListHandler() {
+    if (!accountID) {
+      history.push('/register');
+    }
+  }
+
+  function addToCartHandler() {
+    if (!accountID) {
+      history.push('/register');
+    }
+  }
+
+  function buyHandler() {
+    if (!accountID) {
+      history.push('/register');
     }
   }
 
@@ -206,7 +226,7 @@ function ProductDetail(props) {
               </p>
               <div className="detail__right--name-container">
                 <p className="name">{name}</p>
-                <div className="add-to-wishlist">
+                <div className="add-to-wishlist" onClick={addToWishListHandler}>
                   <img src={heartIcon} alt="" className="add-to-wishlist__icon"></img>
                   <p className="add-to-wishlist__text">Add to Wishlist</p>
                 </div>
@@ -250,8 +270,12 @@ function ProductDetail(props) {
                 <div className="action">
                   {isInStock ? (
                     <>
-                      <div className="action__buy-btn">Buy</div>
-                      <div className="action__add-to-cart-btn">Add to Cart</div>
+                      <div className="action__buy-btn" onClick={buyHandler}>
+                        Buy
+                      </div>
+                      <div className="action__add-to-cart-btn" onClick={addToCartHandler}>
+                        Add to Cart
+                      </div>
                     </>
                   ) : (
                     <div className="action__out-of-stock-btn">Out of Stock</div>
@@ -292,7 +316,7 @@ function ProductDetail(props) {
           </p>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer showBorderTop></Footer>
     </div>
   );
 }

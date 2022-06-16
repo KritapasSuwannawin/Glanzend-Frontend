@@ -21,7 +21,7 @@
       }
 
       &__btn {
-        @include btn-style('solid', 2rem);
+        @include btn-style('solid', 2rem, 1.7rem, 2.55rem);
         margin-top: 3rem;
       }
 

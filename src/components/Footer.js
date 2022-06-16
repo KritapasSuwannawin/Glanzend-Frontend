@@ -7,9 +7,11 @@ import instagramIcon from '../icon/Instagram Icon.svg';
 import './Footer.scss';
 
 function Footer(props) {
+  const { showBorderTop } = props;
+
   return (
     <div className="footer-container">
-      <div className="footer">
+      <div className={`footer ${showBorderTop ? 'border-top' : ''}`}>
         <div className="footer__left">
           <p className="footer__left--brand">Glänzend.*</p>
           <p className="footer__left--desc">

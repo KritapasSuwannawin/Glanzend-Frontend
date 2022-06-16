@@ -33,7 +33,7 @@ function ProductSidebar(props) {
         .then((json) => {
           const { status, data, message } = json;
 
-          if (status !== 'success') {
+          if (status === 'error') {
             throw new Error(message);
           }
 
@@ -55,7 +55,7 @@ function ProductSidebar(props) {
         .then((json) => {
           const { status, data, message } = json;
 
-          if (status !== 'success') {
+          if (status === 'error') {
             throw new Error(message);
           }
 

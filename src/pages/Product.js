@@ -51,7 +51,7 @@ function Product(props) {
       .then((json) => {
         const { status, data, message } = json;
 
-        if (status !== 'success') {
+        if (status === 'error') {
           throw new Error(message);
         }
 

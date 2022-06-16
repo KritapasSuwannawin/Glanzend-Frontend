@@ -26,6 +26,10 @@ a {
   color: inherit;
 }
 
+button {
+  border: none;
+}
+
 @mixin title-style {
   font-family: $font-serif;
   font-size: 8rem;
@@ -53,9 +57,9 @@ a {
   margin-left: -0.3rem;
 }
 
-@mixin btn-style($style, $font-size) {
+@mixin btn-style($style, $font-size, $padding-vertical, $padding-horizontal) {
   font-family: $font-sans-serif;
-  padding: 1.75rem 4rem;
+  padding: $padding-vertical $padding-horizontal;
   font-weight: 600;
   line-height: 150%;
   display: block;

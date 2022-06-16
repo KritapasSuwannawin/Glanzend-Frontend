@@ -31,7 +31,7 @@
           }
 
           &__load-more-btn {
-            @include btn-style('regular', 1.8rem);
+            @include btn-style('regular', 1.8rem, 1.7rem, 4.5rem);
             margin: 0 auto 6.32rem auto;
           }
         }
