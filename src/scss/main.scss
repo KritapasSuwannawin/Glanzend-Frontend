@@ -81,6 +81,6 @@ button {
   }
 
   @media (max-width: 800px) {
-    padding: 1.5rem 3.5rem;
+    padding: ($padding-vertical * 0.8) ($padding-horizontal * 0.8);
   }
 }

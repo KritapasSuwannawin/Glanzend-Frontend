@@ -53,17 +53,22 @@ function Register(props) {
         if (status === 'fail') {
           if (message === 'This email was already used') {
             setIsInvalidEmail(true);
+          } else {
+            setIsInvalidEmail(false);
           }
           return;
         }
 
         const { id } = data;
 
-        setIsInvalidEmail(false);
         dispatch(accountActions.setID(id));
         history.goBack();
       })
       .catch((err) => console.log(err));
+  }
+
+  function loginClickHandler() {
+    history.replace('/login');
   }
 
   return (
@@ -77,19 +82,19 @@ function Register(props) {
               <label className="label" htmlFor="first-name">
                 Enter your first name
               </label>
-              <input className="input" type="text" id="first-name" autoComplete="new-password" required></input>
+              <input className="input" type="text" id="first-name" required></input>
             </div>
             <div className="form__top--input-container">
               <label className="label" htmlFor="last-name">
                 Enter your last name
               </label>
-              <input className="input" type="text" id="last-name" autoComplete="new-password" required></input>
+              <input className="input" type="text" id="last-name" required></input>
             </div>
             <div className="form__top--input-container">
               <label className="label" htmlFor="phone-number">
                 Enter your phone number
               </label>
-              <input className="input" type="tel" id="phone-number" autoComplete="new-password" required></input>
+              <input className="input" type="tel" id="phone-number" required></input>
             </div>
             <div className={`form__top--input-container ${isInvalidEmail ? 'invalid-email' : ''}`}>
               <label className="label" htmlFor="email">
@@ -99,8 +104,8 @@ function Register(props) {
                 className={`input ${isInvalidEmail ? 'invalid' : ''}`}
                 type="email"
                 id="email"
-                autoComplete="new-password"
                 required
+                autoComplete="username"
               ></input>
             </div>
             <div className={`form__top--input-container ${isInvalidPassword ? 'invalid-password' : ''}`}>
@@ -111,8 +116,8 @@ function Register(props) {
                 className={`input ${isInvalidPassword ? 'invalid' : ''}`}
                 type="password"
                 id="password"
-                autoComplete="new-password"
                 required
+                autoComplete="new-password"
               ></input>
             </div>
             <div className={`form__top--input-container ${isInvalidPassword ? 'invalid-password' : ''}`}>
@@ -123,26 +128,26 @@ function Register(props) {
                 className={`input ${isInvalidPassword ? 'invalid' : ''}`}
                 type="password"
                 id="confirm-password"
-                autoComplete="new-password"
                 required
+                autoComplete="new-password"
               ></input>
             </div>
           </div>
           <div className="form__ending">
             <div className="form__ending--policy">
-              <input type="checkbox" className="checkbox" required></input>
-              <p className="text">
+              <input id="checkbox" type="checkbox" className="checkbox" required></input>
+              <label htmlFor="checkbox" className="text">
                 I agree with the{' '}
                 <Link to="/privacy-policy" className="link">
                   Privacy policy
                 </Link>
-              </p>
+              </label>
             </div>
             <p className="form__ending--login">
               Already have an account? Please{' '}
-              <Link to="/login" className="link">
+              <span className="link" onClick={loginClickHandler}>
                 Log in
-              </Link>{' '}
+              </span>{' '}
               here
             </p>
           </div>
