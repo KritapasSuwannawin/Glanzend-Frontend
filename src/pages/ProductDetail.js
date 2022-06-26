@@ -178,18 +178,50 @@ function ProductDetail(props) {
   function addToWishListHandler() {
     if (!accountID) {
       history.push('/register');
+      return;
     }
+
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        accountID,
+        productID,
+        quantity,
+        sizeID,
+        colorID,
+        type: 'wishlist',
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        const { status, message } = json;
+
+        if (status === 'error') {
+          throw new Error(message);
+        }
+
+        if (status === 'fail') {
+          console.log(message);
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   function addToCartHandler() {
     if (!accountID) {
       history.push('/register');
+      return;
     }
   }
 
   function buyHandler() {
     if (!accountID) {
       history.push('/register');
+      return;
     }
   }
 
@@ -254,19 +286,21 @@ function ProductDetail(props) {
                     </p>
                   ))}
               </div>
-              <div className="detail__right--btn-container">
-                <div className="quantity">
-                  <p className="quantity__text">Quantity</p>
-                  <div className="quantity__btn">
-                    <div className="quantity__btn--minus-btn" onClick={minusQuantityClickHandler}>
-                      -
-                    </div>
-                    <div className="quantity__btn--number">{quantity}</div>
-                    <div className="quantity__btn--plus-btn" onClick={plusQuantityClickHandler}>
-                      +
+              <div className={`detail__right--btn-container ${!isInStock ? 'out-of-stock' : ''}`}>
+                {isInStock && (
+                  <div className="quantity">
+                    <p className="quantity__text">Quantity</p>
+                    <div className="quantity__btn">
+                      <div className="quantity__btn--minus-btn" onClick={minusQuantityClickHandler}>
+                        -
+                      </div>
+                      <div className="quantity__btn--number">{quantity}</div>
+                      <div className="quantity__btn--plus-btn" onClick={plusQuantityClickHandler}>
+                        +
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
                 <div className="action">
                   {isInStock ? (
                     <>
