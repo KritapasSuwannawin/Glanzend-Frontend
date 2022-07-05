@@ -1,6 +1,6 @@
 @import '../scss/main.scss';
 
-.wishlist-item-card {
+.item-card {
   @include flex-row-center;
   justify-content: space-between;
 
@@ -53,53 +53,58 @@
         margin-bottom: -0.3rem;
       }
 
-      // .size-color {
-      //   font-size: 16px;
-      //   line-height: 150%;
-      //   text-transform: capitalize;
-      //   color: rgba($color: $color-secondary, $alpha: 0.8);
-      // }
+      .size-color {
+        font-size: 16px;
+        line-height: 150%;
+        text-transform: capitalize;
+        color: rgba($color: $color-secondary, $alpha: 0.8);
+      }
 
       .bottom-container {
-        // display: flex;
-        // align-items: center;
+        display: flex;
+        align-items: center;
         font-weight: 500;
         margin-top: 0.7rem;
 
-        // &__minus-btn,
-        // &__plus-btn {
-        //   @include prevent-select;
-        //   font-size: 2.5rem;
-        //   width: 5rem;
-        //   height: 5rem;
+        .btn-container {
+          display: flex;
+          align-items: center;
+        }
 
-        //   &:hover {
-        //     cursor: pointer;
-        //   }
-        // }
+        &__minus-btn,
+        &__plus-btn {
+          @include prevent-select;
+          font-size: 2.5rem;
+          width: 5rem;
+          height: 5rem;
 
-        // &__minus-btn {
-        //   @include flex-row-center;
-        //   margin-right: 3.2rem;
-        //   color: rgba($color: $color-secondary, $alpha: 0.8);
-        //   background-color: rgba($color: $color-primary, $alpha: 0.1);
-        // }
+          &:hover {
+            cursor: pointer;
+          }
+        }
 
-        // &__quantity {
-        //   margin-right: 3.2rem;
-        //   font-size: 1.8rem;
-        //   line-height: 150%;
-        //   color: $color-primary;
-        //   min-width: 2.5rem;
-        //   text-align: center;
-        // }
+        &__minus-btn {
+          @include flex-row-center;
+          margin-right: 3.2rem;
+          color: rgba($color: $color-secondary, $alpha: 0.8);
+          background-color: rgba($color: $color-primary, $alpha: 0.1);
+        }
 
-        // &__plus-btn {
-        //   @include flex-row-center;
-        //   margin-right: 2.74rem;
-        //   color: #fff;
-        //   background-color: $color-primary;
-        // }
+        &__quantity {
+          margin-right: 3.2rem;
+          font-size: 1.8rem;
+          line-height: 150%;
+          color: $color-primary;
+          min-width: 2.5rem;
+          text-align: center;
+        }
+
+        &__plus-btn {
+          @include flex-row-center;
+          margin-right: 2.74rem;
+          color: #fff;
+          background-color: $color-primary;
+        }
 
         &__status {
           font-size: 2rem;
@@ -153,6 +158,12 @@
         }
 
         .bottom-container {
+          &__minus-btn,
+          &__plus-btn {
+            width: 4rem;
+            height: 4rem;
+          }
+
           &__status {
             font-size: 1.6rem;
           }
@@ -190,8 +201,10 @@
         text-align: center;
 
         .bottom-container {
-          &__status {
-            text-align: center;
+          flex-direction: column;
+
+          &__plus-btn {
+            margin-right: 0;
           }
         }
       }

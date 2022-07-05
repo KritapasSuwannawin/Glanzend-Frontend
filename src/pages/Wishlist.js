@@ -6,7 +6,7 @@ import { accountActions } from '../store/accountSlice';
 
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import WishlistItemCard from '../components/WishlistItemCard';
+import ItemCard from '../components/ItemCard';
 import './Wishlist.scss';
 
 function Wishlist(props) {
@@ -83,8 +83,6 @@ function Wishlist(props) {
   }
 
   function addToCartClickHandler() {
-    console.log(checkedItemIDArr);
-
     if (checkedItemIDArr.length === 0) {
       return;
     }
@@ -116,7 +114,9 @@ function Wishlist(props) {
 
   const toggleCheckItemHandler = useCallback((id, isChecked) => {
     if (isChecked) {
-      setCheckedItemIDArr((arr) => {
+      setCheckedItemIDArr((prev) => {
+        const arr = [...prev];
+
         if (!arr.includes(id)) {
           arr.push(id);
         }
@@ -124,7 +124,9 @@ function Wishlist(props) {
         return arr;
       });
     } else {
-      setCheckedItemIDArr((arr) => {
+      setCheckedItemIDArr((prev) => {
+        const arr = [...prev];
+
         if (arr.includes(id)) {
           const index = arr.indexOf(id);
           arr.splice(index, 1);
@@ -165,7 +167,7 @@ function Wishlist(props) {
               })
               .map((item) => (
                 <div key={item.id} className="card">
-                  <WishlistItemCard item={item} toggleCheckItemHandler={toggleCheckItemHandler}></WishlistItemCard>
+                  <ItemCard item={item} toggleCheckItemHandler={toggleCheckItemHandler}></ItemCard>
                 </div>
               ))}
             <div className="add-to-cart">

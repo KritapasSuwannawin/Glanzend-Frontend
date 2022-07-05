@@ -6,6 +6,7 @@ import ProductDetail from './pages/ProductDetail';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
 import Account from './pages/Account';
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
       </Route>
       <Route exact path="/wishlist">
         <Wishlist></Wishlist>
+      </Route>
+      <Route exact path="/cart">
+        <Cart></Cart>
       </Route>
       <Route exact path="/account">
         <Account></Account>

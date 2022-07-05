@@ -5,10 +5,10 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { resourceActions } from '../store/resourceSlice';
 
 import heartIcon from '../icon/Heart Icon.svg';
-import leftArrowIcon from '../icon/Left Arrow Icon.svg';
 
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import SimilarProductContainer from '../components/SimilarProductContainer';
 import './ProductDetail.scss';
 
 function ProductDetail(props) {
@@ -216,6 +216,35 @@ function ProductDetail(props) {
       history.push('/register');
       return;
     }
+
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        accountID,
+        productID,
+        quantity,
+        sizeID,
+        colorID,
+        type: 'cart',
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        const { status, message } = json;
+
+        if (status === 'error') {
+          throw new Error(message);
+        }
+
+        if (status === 'fail') {
+          console.log(message);
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   function buyHandler() {
@@ -223,10 +252,6 @@ function ProductDetail(props) {
       history.push('/register');
       return;
     }
-  }
-
-  function goBackHandler() {
-    history.goBack();
   }
 
   return (
@@ -321,35 +346,12 @@ function ProductDetail(props) {
         </div>
       )}
       {similarProductArr.length > 0 && (
-        <div className="similar-product-container">
-          <div className="similar-product">
-            <p className="similar-product__title">Similar Products</p>
-            <div className="similar-product__card-container">
-              {similarProductArr.map((product, i) => (
-                <div className="card" key={i}>
-                  <Link to={`/product/${product.id}`} className="card__img"></Link>
-                  {categoryArr.length > 0 && (
-                    <Link to={`/product?category_id=${product.category_id}`} className="card__category">
-                      {getCategoryNameFromID(product.category_id)}
-                    </Link>
-                  )}
-                  <Link to={`/product/${product.id}`} className="card__name">
-                    {product.name}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <SimilarProductContainer
+          similarProductArr={similarProductArr}
+          categoryArr={categoryArr}
+          getCategoryNameFromID={getCategoryNameFromID}
+        ></SimilarProductContainer>
       )}
-      <div className="continue-shopping-container">
-        <div className="continue-shopping">
-          <img src={leftArrowIcon} alt="" className="continue-shopping__arrow" onClick={goBackHandler}></img>
-          <p className="continue-shopping__text" onClick={goBackHandler}>
-            Continue Shopping
-          </p>
-        </div>
-      </div>
       <Footer showBorderTop></Footer>
     </div>
   );

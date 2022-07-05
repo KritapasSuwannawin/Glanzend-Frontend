@@ -263,80 +263,6 @@
     }
   }
 
-  .similar-product-container {
-    background-color: #fff;
-
-    .similar-product {
-      @include section-style;
-      padding-top: 3.8rem;
-      padding-bottom: 5.22rem;
-
-      &__title {
-        text-align: center;
-        letter-spacing: 0.02em;
-        @include font-style(3.6rem, $color-secondary, 700);
-        font-family: $font-serif;
-      }
-
-      &__card-container {
-        @include flex-row-center;
-        column-gap: 1.5rem;
-        margin-top: 4.4rem;
-
-        .card {
-          width: calc((100% - 4.5rem) / 4);
-
-          &__img {
-            width: 100%;
-            padding-top: 117%;
-            background-color: $box-color;
-            display: block;
-          }
-
-          &__category {
-            margin-top: 1.55rem;
-            display: block;
-            @include font-style(1.8rem, $color-primary, 600);
-            text-transform: capitalize;
-          }
-
-          &__name {
-            display: block;
-            @include font-style(2.4rem, $color-secondary, 600);
-            text-transform: capitalize;
-          }
-        }
-      }
-    }
-  }
-
-  .continue-shopping-container {
-    background-color: $color-primary-light;
-
-    .continue-shopping {
-      @include section-style;
-      padding-top: 7.77rem;
-      padding-bottom: 9.1rem;
-      display: flex;
-      align-items: center;
-      column-gap: 3.6rem;
-
-      & > * {
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      &__arrow {
-        width: 12.5rem;
-      }
-
-      &__text {
-        @include font-style(2.4rem, $color-primary, 600);
-      }
-    }
-  }
-
   @media (max-width: 1440px) {
     .detail-container {
       .detail {
@@ -425,23 +351,6 @@
               & > * {
                 padding: 0 3.5rem;
               }
-            }
-          }
-        }
-      }
-    }
-
-    .similar-product-container {
-      .similar-product {
-        &__card-container {
-          flex-wrap: wrap;
-          row-gap: 2.5rem;
-
-          .card {
-            width: calc((100% - 1.5rem) / 2);
-
-            &__category {
-              margin-top: 1rem;
             }
           }
         }

@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,9 +7,9 @@ import { accountActions } from '../store/accountSlice';
 
 import crossIcon from '../icon/Cross Icon.svg';
 
-import './WishlistItemCard.scss';
+import './ItemCard.scss';
 
-function WishlistItemCard(props) {
+function ItemCard(props) {
   const { toggleCheckItemHandler, item } = props;
 
   const {
@@ -17,17 +17,18 @@ function WishlistItemCard(props) {
     price,
     product_id: productID,
     product_name: productName,
-    // size_name: sizeName,
-    // color_name: colorName,
+    size_name: sizeName,
+    color_name: colorName,
     is_in_stock: isInStock,
     is_checked: isChecked,
+    type,
   } = item;
 
   const dispatch = useDispatch();
 
   const accountID = useSelector((store) => store.account.id);
 
-  // const [quantity, setQuantity] = useState(props.item.quantity);
+  const [quantity, setQuantity] = useState(props.item.quantity);
 
   useEffect(() => {
     toggleCheckItemHandler(itemID, isChecked);
@@ -45,27 +46,27 @@ function WishlistItemCard(props) {
     updateDatabase('is_checked', isChecked);
   }
 
-  // function plusQuantityClickHandler() {
-  //   setQuantity((quantity) => {
-  //     const newValue = quantity + 1;
+  function plusQuantityClickHandler() {
+    setQuantity((quantity) => {
+      const newValue = quantity + 1;
 
-  //     updateDatabase('quantity', newValue);
+      updateDatabase('quantity', newValue);
 
-  //     return newValue;
-  //   });
-  // }
+      return newValue;
+    });
+  }
 
-  // function minusQuantityClickHandler() {
-  //   if (quantity > 1) {
-  //     setQuantity((quantity) => {
-  //       const newValue = quantity - 1;
+  function minusQuantityClickHandler() {
+    if (quantity > 1) {
+      setQuantity((quantity) => {
+        const newValue = quantity - 1;
 
-  //       updateDatabase('quantity', newValue);
+        updateDatabase('quantity', newValue);
 
-  //       return newValue;
-  //     });
-  //   }
-  // }
+        return newValue;
+      });
+    }
+  }
 
   function updateDatabase(column, value) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item`, {
@@ -83,7 +84,14 @@ function WishlistItemCard(props) {
 
   function crossClickHandler() {
     toggleCheckItemHandler(itemID, false);
-    dispatch(accountActions.removeIDFromWishlistLineItemIDArr(itemID));
+
+    if (type === 'wishlist') {
+      dispatch(accountActions.removeIDFromWishlistLineItemIDArr(itemID));
+    }
+
+    if (type === 'cart') {
+      dispatch(accountActions.removeIDFromCartLineItemIDArr(itemID));
+    }
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item`, {
       method: 'DELETE',
@@ -93,13 +101,13 @@ function WishlistItemCard(props) {
       body: JSON.stringify({
         itemID,
         accountID,
-        type: 'wishlist',
+        type,
       }),
     }).catch((err) => console.log(err));
   }
 
   return (
-    <div className="wishlist-item-card">
+    <div className={`item-card ${type}`}>
       <div className="left">
         <input
           type="checkbox"
@@ -117,20 +125,28 @@ function WishlistItemCard(props) {
             {productName}
           </Link>
           <p className="price">$ {price.toFixed(2)}</p>
-          {/* <p className="size-color">
-            Size: {sizeName} | Color: {colorName}
-          </p> */}
-          <div className="bottom-container">
-            {/* <div className="bottom-container__minus-btn" onClick={minusQuantityClickHandler}>
-              -
-            </div>
-            <p className="bottom-container__quantity">{quantity}</p>
-            <div className="bottom-container__plus-btn" onClick={plusQuantityClickHandler}>
-              +
-            </div> */}
-            <p className="bottom-container__status">
-              Status: <span className={isInStock ? 'in-stock' : 'out-of-stock'}>{isInStock ? 'IN STOCK' : 'OUT OF STOCK'}</span>
+          {type === 'cart' && (
+            <p className="size-color">
+              Size: {sizeName} | Color: {colorName}
             </p>
+          )}
+          <div className="bottom-container">
+            {type === 'cart' && (
+              <div className="btn-container">
+                <div className="bottom-container__minus-btn" onClick={minusQuantityClickHandler}>
+                  -
+                </div>
+                <p className="bottom-container__quantity">{quantity}</p>
+                <div className="bottom-container__plus-btn" onClick={plusQuantityClickHandler}>
+                  +
+                </div>
+              </div>
+            )}
+            {type === 'wishlist' && (
+              <p className="bottom-container__status">
+                Status: <span className={isInStock ? 'in-stock' : 'out-of-stock'}>{isInStock ? 'IN STOCK' : 'OUT OF STOCK'}</span>
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -141,4 +157,4 @@ function WishlistItemCard(props) {
   );
 }
 
-export default WishlistItemCard;
+export default ItemCard;
