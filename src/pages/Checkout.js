@@ -13,13 +13,12 @@ import Footer from '../components/Footer';
 import './Checkout.scss';
 
 function Checkout(props) {
-  const { checkedItemArr, total } = props;
-
   const dispatch = useDispatch();
   const history = useHistory();
 
   const collectionArr = useSelector((store) => store.resource.collectionArr);
   const accountID = useSelector((store) => store.account.id);
+  const checkoutItemArr = useSelector((store) => store.account.checkoutItemArr);
 
   const [isFetching, setIsFetching] = useState(false);
 
@@ -35,7 +34,8 @@ function Checkout(props) {
   const securityCodeRef = useRef();
   const expirationDateRef = useRef();
 
-  const checkedItemIDArr = checkedItemArr.map((item) => item.id);
+  const checkoutItemIDArr = checkoutItemArr.map((item) => item.id);
+  const total = checkoutItemArr.reduce((prev, current) => prev + current.price * current.quantity, 0);
 
   useEffect(() => {
     if (collectionArr.length === 0) {
@@ -147,8 +147,9 @@ function Checkout(props) {
       },
       body: JSON.stringify({
         accountID,
-        lineItemIDArr: checkedItemIDArr,
+        lineItemIDArr: checkoutItemIDArr,
         operationType: 'checkout',
+        lineItem: checkoutItemArr[0],
       }),
     })
       .then((res) => res.json())
@@ -159,7 +160,7 @@ function Checkout(props) {
           throw new Error(message);
         }
 
-        dispatch(accountActions.removeIDArrFromCartLineItemIDArr(checkedItemIDArr));
+        dispatch(accountActions.setCheckoutItemArr([]));
         history.replace('/cart/checkout/complete');
       })
       .catch((err) => console.log(err))
@@ -170,7 +171,7 @@ function Checkout(props) {
     history.replace('/cart');
   }
 
-  if (checkedItemArr.length === 0) {
+  if (checkoutItemArr.length === 0) {
     return <Redirect to="/cart"></Redirect>;
   }
 
@@ -231,8 +232,8 @@ function Checkout(props) {
           <div className="summary__order">
             <p className="summary__order--title">Order</p>
             <div className="summary__order--item-container">
-              {checkedItemArr.map((item) => (
-                <div key={item.id} className="card">
+              {checkoutItemArr.map((item) => (
+                <div key={item.id || Math.random()} className="card">
                   <div className="card__img"></div>
                   <div className="card__detail">
                     <Link to={`/product?collection_id=${item.collection_id}`} className="card__detail--collection">

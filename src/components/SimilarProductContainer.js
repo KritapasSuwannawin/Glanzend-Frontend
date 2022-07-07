@@ -9,7 +9,7 @@ import leftArrowIcon from '../icon/Left Arrow Icon.svg';
 import './SimilarProductContainer.scss';
 
 function SimilarProductContainer(props) {
-  const { similarProductArr } = props;
+  const { similarProductArr, title } = props;
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function SimilarProductContainer(props) {
     <>
       <div className="similar-product-container">
         <div className="similar-product">
-          <p className="similar-product__title">Similar Products</p>
+          <p className="similar-product__title">{title || 'Similar Products'}</p>
           <div className="similar-product__card-container">
             {similarProductArr.map((product, i) => (
               <div className="card" key={i}>

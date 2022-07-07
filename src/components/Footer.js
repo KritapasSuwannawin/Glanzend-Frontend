@@ -41,6 +41,9 @@ function Footer(props) {
             <Link to="/policy" className="column__link">
               Privacy Policy
             </Link>
+            <Link to="/press" className="column__link">
+              Press
+            </Link>
           </div>
           <div className="column">
             <p className="column__title">Information</p>
@@ -59,17 +62,17 @@ function Footer(props) {
           </div>
           <div className="column">
             <p className="column__title">Order</p>
-            <Link to="/account" className="column__link">
-              My Account
-            </Link>
             <Link to="/cart" className="column__link">
               Cart
             </Link>
             <Link to="/wishlist" className="column__link">
               Wishlist
             </Link>
-            <Link to="/cart/checkout" className="column__link">
-              Checkout
+            <Link to="/account" className="column__link">
+              My Account
+            </Link>
+            <Link to="/shipping" className="column__link">
+              Shipping
             </Link>
           </div>
         </div>

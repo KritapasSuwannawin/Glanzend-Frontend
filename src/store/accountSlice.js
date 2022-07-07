@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const accountSlice = createSlice({
   name: 'account',
-  initialState: { id: undefined, wishlistLineItemIDArr: [], cartLineItemIDArr: [] },
+  initialState: { id: undefined, wishlistLineItemIDArr: [], cartLineItemIDArr: [], checkoutItemArr: [] },
   reducers: {
     setID(state, action) {
       state.id = action.payload;
@@ -27,6 +27,9 @@ const accountSlice = createSlice({
     },
     removeIDArrFromCartLineItemIDArr(state, action) {
       state.cartLineItemIDArr = state.cartLineItemIDArr.filter((id) => !action.payload.includes(id));
+    },
+    setCheckoutItemArr(state, action) {
+      state.checkoutItemArr = action.payload;
     },
   },
 });

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Route, Redirect, Switch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -8,8 +8,6 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import ItemCard from '../components/ItemCard';
 import SimilarProductContainer from '../components/SimilarProductContainer';
-import Checkout from './Checkout';
-import CheckoutComplete from './CheckoutComplete';
 import './Cart.scss';
 
 function Cart(props) {
@@ -168,6 +166,7 @@ function Cart(props) {
 
   function checkoutClickHandler() {
     if (checkedItemArr.length > 0) {
+      dispatch(accountActions.setCheckoutItemArr(checkedItemArr));
       history.push('/cart/checkout');
     }
   }
@@ -178,62 +177,51 @@ function Cart(props) {
   }
 
   return (
-    <Switch>
-      <Route exact path="/cart">
-        <div className="cart">
-          <Nav></Nav>
-          <div className="title-container">
-            <p className="title">My Cart</p>
-          </div>
-          <div className="main-container">
-            <div className="main-container__left">
-              {cartLineItemArr.length > 0 && (
-                <>
-                  {/* <div className="select-all">
+    <div className="cart">
+      <Nav></Nav>
+      <div className="title-container">
+        <p className="title">My Cart</p>
+      </div>
+      <div className="main-container">
+        <div className="main-container__left">
+          {cartLineItemArr.length > 0 && (
+            <>
+              {/* <div className="select-all">
               <input type="checkbox" className="select-all__checkbox" id="checkbox-1"></input>
               <label htmlFor="checkbox-1" className="select-all__label">
                 Select All
               </label>
             </div> */}
-                  {cartLineItemArr.map((item) => (
-                    <div key={item.id} className="main-container__left--card">
-                      <ItemCard
-                        item={item}
-                        toggleCheckItemHandler={toggleCheckItemHandler}
-                        quantityChangeHandler={quantityChangeHandler}
-                      ></ItemCard>
-                    </div>
-                  ))}
-                </>
-              )}
+              {cartLineItemArr.map((item) => (
+                <div key={item.id} className="main-container__left--card">
+                  <ItemCard
+                    item={item}
+                    toggleCheckItemHandler={toggleCheckItemHandler}
+                    quantityChangeHandler={quantityChangeHandler}
+                  ></ItemCard>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+        <div className="main-container__right">
+          <div className="main-container__right--summary">
+            <p className="title">Summary</p>
+            <div className="total">
+              <p className="text">Total</p>
+              <p className="number">${total.toFixed(2)}</p>
             </div>
-            <div className="main-container__right">
-              <div className="main-container__right--summary">
-                <p className="title">Summary</p>
-                <div className="total">
-                  <p className="text">Total</p>
-                  <p className="number">${total.toFixed(2)}</p>
-                </div>
-                <div className="btn" onClick={checkoutClickHandler}>
-                  Checkout
-                </div>
-              </div>
+            <div className="btn" onClick={checkoutClickHandler}>
+              Checkout
             </div>
           </div>
-          {similarProductArr.length > 0 && <SimilarProductContainer similarProductArr={similarProductArr}></SimilarProductContainer>}
-          <Footer showBorderTop></Footer>
         </div>
-      </Route>
-      <Route exact path="/cart/checkout">
-        <Checkout checkedItemArr={checkedItemArr} total={total}></Checkout>
-      </Route>
-      <Route exact path="/cart/checkout/complete">
-        <CheckoutComplete></CheckoutComplete>
-      </Route>
-      <Route path="/">
-        <Redirect to="/cart"></Redirect>
-      </Route>
-    </Switch>
+      </div>
+      {similarProductArr.length > 0 && (
+        <SimilarProductContainer similarProductArr={similarProductArr} title="You may also like"></SimilarProductContainer>
+      )}
+      <Footer showBorderTop></Footer>
+    </div>
   );
 }
 

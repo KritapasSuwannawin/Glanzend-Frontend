@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
 import { resourceActions } from '../store/resourceSlice';
+import { accountActions } from '../store/accountSlice';
 
 import heartIcon from '../icon/Heart Icon.svg';
 
@@ -156,6 +157,10 @@ function ProductDetail(props) {
     return colorArr.find((color) => color.id === id).code;
   }
 
+  function getColorNameFromID(id) {
+    return colorArr.find((color) => color.id === id).name;
+  }
+
   function getSizeNameFromID(id) {
     return sizeArr.find((size) => size.id === id).name;
   }
@@ -255,6 +260,29 @@ function ProductDetail(props) {
       history.push('/register');
       return;
     }
+
+    dispatch(
+      accountActions.setCheckoutItemArr([
+        {
+          account_id: accountID,
+          collection_id: collectionID,
+          color_id: colorID,
+          color_name: getColorNameFromID(colorID),
+          id: undefined,
+          is_checked: undefined,
+          is_in_stock: isInStock,
+          price: price,
+          product_id: productID,
+          product_name: name,
+          quantity: quantity,
+          size_id: sizeID,
+          size_name: getSizeNameFromID(sizeID),
+          type: undefined,
+        },
+      ])
+    );
+
+    history.push('/cart/checkout');
   }
 
   return (
