@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import AES from 'crypto-js/aes';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -15,18 +16,28 @@ function Login(props) {
   const [isInvalidPassword, setIsInValidPassword] = useState(false);
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
 
+  const accountID = useSelector((store) => store.account.id);
+
+  useEffect(() => {
+    if (accountID) {
+      history.goBack();
+    }
+  }, [history, accountID]);
+
   function formSubmitHandler(e) {
     e.preventDefault();
 
     const email = e.target[0].value;
     const password = e.target[1].value;
 
+    const encryptedPassword = AES.encrypt(password, process.env.REACT_APP_PRIVATE_KEY).toString();
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, encryptedPassword }),
     })
       .then((res) => res.json())
       .then((json) => {
@@ -51,6 +62,9 @@ function Login(props) {
 
           return;
         }
+
+        localStorage.setItem('glanzend-email', email);
+        localStorage.setItem('glanzend-password', encryptedPassword);
 
         const { id } = data;
 

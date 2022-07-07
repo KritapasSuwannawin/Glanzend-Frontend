@@ -22,6 +22,8 @@ function Wishlist(props) {
   const [checkedItemIDArr, setCheckedItemIDArr] = useState([]);
 
   useEffect(() => {
+    let cancel = false;
+
     if (accountID) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=wishlist_line_item_id_arr`, {
         method: 'GET',
@@ -31,6 +33,10 @@ function Wishlist(props) {
       })
         .then((res) => res.json())
         .then((json) => {
+          if (cancel) {
+            return;
+          }
+
           const { status, data, message } = json;
 
           if (status === 'error') {
@@ -44,9 +50,15 @@ function Wishlist(props) {
         })
         .catch((err) => console.log(err));
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [dispatch, accountID]);
 
   useEffect(() => {
+    let cancel = false;
+
     if (!isDoneStartup) {
       return;
     }
@@ -63,6 +75,10 @@ function Wishlist(props) {
       )
         .then((res) => res.json())
         .then((json) => {
+          if (cancel) {
+            return;
+          }
+
           const { status, data, message } = json;
 
           if (status === 'error') {
@@ -76,6 +92,10 @@ function Wishlist(props) {
     } else {
       setWishlistLineItemArr([]);
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [wishlistLineItemIDArr, accountID, isDoneStartup]);
 
   function showInStockOnlyClickHandler(e) {

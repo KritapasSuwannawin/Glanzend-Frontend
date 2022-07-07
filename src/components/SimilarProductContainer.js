@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-
-import { resourceActions } from '../store/resourceSlice';
 
 import leftArrowIcon from '../icon/Left Arrow Icon.svg';
 
@@ -12,33 +9,8 @@ function SimilarProductContainer(props) {
   const { similarProductArr, title } = props;
 
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const collectionArr = useSelector((store) => store.resource.collectionArr);
-
-  useEffect(() => {
-    if (collectionArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { categoryArr, collectionArr } = data;
-          dispatch(resourceActions.setCategoryArr(categoryArr));
-          dispatch(resourceActions.setCollectionArr(collectionArr));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [dispatch, collectionArr]);
 
   function getCollectionNameFromID(id) {
     return collectionArr.find((col) => col.id === id).name;

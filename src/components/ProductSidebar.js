@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { resourceActions } from '../store/resourceSlice';
 import { productActions } from '../store/productSlice';
 
 import './ProductSidebar.scss';
@@ -20,52 +19,6 @@ function ProductSidebar(props) {
   const maxPrice = useSelector((store) => store.product.maxPrice);
 
   const [showAllColor, setShowAllColor] = useState(false);
-
-  useEffect(() => {
-    if (colorArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/product-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { colorArr, sizeArr } = data;
-          dispatch(resourceActions.setColorArr(colorArr));
-          dispatch(resourceActions.setSizeArr(sizeArr));
-        })
-        .catch((err) => console.log(err));
-    }
-
-    if (categoryArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { categoryArr, collectionArr } = data;
-          dispatch(resourceActions.setCategoryArr(categoryArr));
-          dispatch(resourceActions.setCollectionArr(collectionArr));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [dispatch, categoryArr, colorArr]);
 
   function collectionClickHandler() {
     dispatch(productActions.setCollectionID(this !== collectionID ? this : undefined));

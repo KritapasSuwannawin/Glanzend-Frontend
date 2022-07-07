@@ -25,6 +25,8 @@ function Cart(props) {
   const [checkedItemArr, setCheckedItemArr] = useState([]);
 
   useEffect(() => {
+    let cancel = false;
+
     if (accountID) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=cart_line_item_id_arr`, {
         method: 'GET',
@@ -34,6 +36,10 @@ function Cart(props) {
       })
         .then((res) => res.json())
         .then((json) => {
+          if (cancel) {
+            return;
+          }
+
           const { status, data, message } = json;
 
           if (status === 'error') {
@@ -47,9 +53,15 @@ function Cart(props) {
         })
         .catch((err) => console.log(err));
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [dispatch, accountID]);
 
   useEffect(() => {
+    let cancel = false;
+
     if (!isDoneStartup) {
       return;
     }
@@ -66,6 +78,10 @@ function Cart(props) {
       )
         .then((res) => res.json())
         .then((json) => {
+          if (cancel) {
+            return;
+          }
+
           const { status, data, message } = json;
 
           if (status === 'error') {
@@ -79,6 +95,10 @@ function Cart(props) {
     } else {
       setCartLineItemArr([]);
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [cartLineItemIDArr, accountID, isDoneStartup]);
 
   useEffect(() => {
@@ -99,6 +119,8 @@ function Cart(props) {
   }, [checkedItemIDArr, cartLineItemArr]);
 
   useEffect(() => {
+    let cancel = false;
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product?limit=${cartLineItemIDArr.length + 4}`, {
       method: 'GET',
       headers: {
@@ -107,6 +129,10 @@ function Cart(props) {
     })
       .then((res) => res.json())
       .then((json) => {
+        if (cancel) {
+          return;
+        }
+
         const { status, data, message } = json;
 
         if (status === 'error') {
@@ -117,6 +143,10 @@ function Cart(props) {
         setSimilarProductArr(productArr.filter((product) => !cartLineItemIDArr.includes(product.id)).slice(0, 4));
       })
       .catch((err) => console.log(err));
+
+    return () => {
+      cancel = true;
+    };
   }, [cartLineItemIDArr]);
 
   const toggleCheckItemHandler = useCallback((id, isChecked) => {

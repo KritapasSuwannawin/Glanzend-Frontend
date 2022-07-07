@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import AES from 'crypto-js/aes';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -14,8 +15,16 @@ function Register(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const accountID = useSelector((store) => store.account.id);
+
   const [isInvalidPassword, setIsInValidPassword] = useState(false);
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+
+  useEffect(() => {
+    if (accountID) {
+      history.goBack();
+    }
+  }, [history, accountID]);
 
   function formSubmitHandler(e) {
     e.preventDefault();
@@ -35,12 +44,14 @@ function Register(props) {
     const phoneNumber = e.target[2].value;
     const email = e.target[3].value;
 
+    const encryptedPassword = AES.encrypt(password, process.env.REACT_APP_PRIVATE_KEY).toString();
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName, lastName, phoneNumber, email, password }),
+      body: JSON.stringify({ firstName, lastName, phoneNumber, email, encryptedPassword }),
     })
       .then((res) => res.json())
       .then((json) => {
@@ -58,6 +69,9 @@ function Register(props) {
           }
           return;
         }
+
+        localStorage.setItem('glanzend-email', email);
+        localStorage.setItem('glanzend-password', encryptedPassword);
 
         const { id } = data;
 

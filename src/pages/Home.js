@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { resourceActions } from '../store/resourceSlice';
 
 import snowIcon from '../icon/Snow Icon.svg';
 
@@ -11,34 +8,8 @@ import Footer from '../components/Footer';
 import './Home.scss';
 
 function Home() {
-  const dispatch = useDispatch();
-
   const categoryArr = useSelector((store) => store.resource.categoryArr);
   const collectionArr = useSelector((store) => store.resource.collectionArr);
-
-  useEffect(() => {
-    if (categoryArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { categoryArr, collectionArr } = data;
-          dispatch(resourceActions.setCategoryArr(categoryArr));
-          dispatch(resourceActions.setCollectionArr(collectionArr));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [dispatch, categoryArr]);
 
   return (
     <div className="home">

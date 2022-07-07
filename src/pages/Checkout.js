@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 
-import { resourceActions } from '../store/resourceSlice';
 import { accountActions } from '../store/accountSlice';
 
 import deliveryTruckIcon from '../icon/Delivery Truck Icon.svg';
@@ -36,30 +35,6 @@ function Checkout(props) {
 
   const checkoutItemIDArr = checkoutItemArr.map((item) => item.id);
   const total = checkoutItemArr.reduce((prev, current) => prev + current.price * current.quantity, 0);
-
-  useEffect(() => {
-    if (collectionArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { categoryArr, collectionArr } = data;
-          dispatch(resourceActions.setCategoryArr(categoryArr));
-          dispatch(resourceActions.setCollectionArr(collectionArr));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [dispatch, collectionArr]);
 
   useEffect(() => {
     if (accountID && firstNameRef.current) {

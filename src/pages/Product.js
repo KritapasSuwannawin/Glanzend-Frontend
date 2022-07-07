@@ -30,6 +30,8 @@ function Product(props) {
   const searchRef = useRef();
 
   useEffect(() => {
+    let cancel = false;
+
     if (searchRef.current !== search) {
       searchRef.current = search;
 
@@ -49,6 +51,10 @@ function Product(props) {
     })
       .then((res) => res.json())
       .then((json) => {
+        if (cancel) {
+          return;
+        }
+
         const { status, data, message } = json;
 
         if (status === 'error') {
@@ -66,6 +72,10 @@ function Product(props) {
         }
       })
       .catch((err) => console.log(err));
+
+    return () => {
+      cancel = true;
+    };
   }, [dispatch, search, offset, view]);
 
   useEffect(() => {

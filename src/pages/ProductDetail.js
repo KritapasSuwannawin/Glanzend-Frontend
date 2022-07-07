@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
-import { resourceActions } from '../store/resourceSlice';
 import { accountActions } from '../store/accountSlice';
 
 import heartIcon from '../icon/Heart Icon.svg';
@@ -39,52 +38,8 @@ function ProductDetail(props) {
   const [similarProductArr, setSimilarProductArr] = useState([]);
 
   useEffect(() => {
-    if (colorArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/product-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
+    let cancel = false;
 
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { colorArr, sizeArr } = data;
-          dispatch(resourceActions.setColorArr(colorArr));
-          dispatch(resourceActions.setSizeArr(sizeArr));
-        })
-        .catch((err) => console.log(err));
-    }
-
-    if (collectionArr.length === 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          const { categoryArr, collectionArr } = data;
-          dispatch(resourceActions.setCategoryArr(categoryArr));
-          dispatch(resourceActions.setCollectionArr(collectionArr));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [dispatch, collectionArr, colorArr]);
-
-  useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${productID}`, {
       method: 'GET',
       headers: {
@@ -93,6 +48,10 @@ function ProductDetail(props) {
     })
       .then((res) => res.json())
       .then((json) => {
+        if (cancel) {
+          return;
+        }
+
         const { status, data, message } = json;
 
         if (status === 'error') {
@@ -122,9 +81,15 @@ function ProductDetail(props) {
         setSizeID(sizeIDArr[0]);
       })
       .catch((err) => console.log(err));
+
+    return () => {
+      cancel = true;
+    };
   }, [productID]);
 
   useEffect(() => {
+    let cancel = false;
+
     if (!categoryID) {
       return;
     }
@@ -137,6 +102,10 @@ function ProductDetail(props) {
     })
       .then((res) => res.json())
       .then((json) => {
+        if (cancel) {
+          return;
+        }
+
         const { status, data, message } = json;
 
         if (status === 'error') {
@@ -147,6 +116,10 @@ function ProductDetail(props) {
         setSimilarProductArr(productArr.filter((product) => product.id !== Number(productID)).slice(0, 4));
       })
       .catch((err) => console.log(err));
+
+    return () => {
+      cancel = true;
+    };
   }, [categoryID, productID]);
 
   function getCollectionNameFromID(id) {
