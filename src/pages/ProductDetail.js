@@ -17,7 +17,7 @@ function ProductDetail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const categoryArr = useSelector((store) => store.resource.categoryArr);
+  const collectionArr = useSelector((store) => store.resource.collectionArr);
   const colorArr = useSelector((store) => store.resource.colorArr);
   const sizeArr = useSelector((store) => store.resource.sizeArr);
 
@@ -26,6 +26,7 @@ function ProductDetail(props) {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [categoryID, setCategoryID] = useState();
+  const [collectionID, setCollectionID] = useState();
   const [colorIDArr, setColorIDArr] = useState([]);
   const [sizeIDArr, setSizeIDArr] = useState([]);
   const [isInStock, setIsInStock] = useState();
@@ -59,7 +60,7 @@ function ProductDetail(props) {
         .catch((err) => console.log(err));
     }
 
-    if (categoryArr.length === 0) {
+    if (collectionArr.length === 0) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
         method: 'GET',
         headers: {
@@ -80,7 +81,7 @@ function ProductDetail(props) {
         })
         .catch((err) => console.log(err));
     }
-  }, [dispatch, categoryArr, colorArr]);
+  }, [dispatch, collectionArr, colorArr]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${productID}`, {
@@ -102,6 +103,7 @@ function ProductDetail(props) {
           is_in_stock: isInStock,
           size_id_arr: sizeIDArr,
           category_id: categoryID,
+          collection_id: collectionID,
           name,
           price,
         } = data.product;
@@ -109,6 +111,7 @@ function ProductDetail(props) {
         setName(name);
         setPrice(price);
         setCategoryID(categoryID);
+        setCollectionID(collectionID);
         setColorIDArr(colorIDArr);
         setSizeIDArr(sizeIDArr);
         setIsInStock(isInStock);
@@ -145,8 +148,8 @@ function ProductDetail(props) {
       .catch((err) => console.log(err));
   }, [categoryID, productID]);
 
-  function getCategoryNameFromID(id) {
-    return categoryArr.find((cat) => cat.id === id).name;
+  function getCollectionNameFromID(id) {
+    return collectionArr.find((col) => col.id === id).name;
   }
 
   function getColorCodeFromID(id) {
@@ -273,9 +276,9 @@ function ProductDetail(props) {
             </div>
             <div className="detail__right">
               <p className="detail__right--link">
-                {categoryArr.length > 0 && (
+                {collectionArr.length > 0 && (
                   <>
-                    <Link to={`/product?category_id=${categoryID}`}>{getCategoryNameFromID(categoryID)}</Link>
+                    <Link to={`/product?colleciton_id=${collectionID}`}>{getCollectionNameFromID(collectionID)}</Link>
                     {` > `}
                   </>
                 )}
@@ -288,7 +291,7 @@ function ProductDetail(props) {
                   <p className="add-to-wishlist__text">Add to Wishlist</p>
                 </div>
               </div>
-              <p className="detail__right--price">$ {Number(price).toFixed(2)}</p>
+              <p className="detail__right--price">${Number(price).toFixed(2)}</p>
               <p className="detail__right--desc">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec varius augue. Duis mauris arcu.
               </p>
@@ -345,13 +348,7 @@ function ProductDetail(props) {
           </div>
         </div>
       )}
-      {similarProductArr.length > 0 && (
-        <SimilarProductContainer
-          similarProductArr={similarProductArr}
-          categoryArr={categoryArr}
-          getCategoryNameFromID={getCategoryNameFromID}
-        ></SimilarProductContainer>
-      )}
+      {similarProductArr.length > 0 && <SimilarProductContainer similarProductArr={similarProductArr}></SimilarProductContainer>}
       <Footer showBorderTop></Footer>
     </div>
   );

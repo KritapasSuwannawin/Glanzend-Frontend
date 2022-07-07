@@ -54,7 +54,7 @@
           display: block;
         }
 
-        &__category {
+        &__collection {
           margin-top: 1.55rem;
           display: block;
           @include font-style(1.8rem, $color-primary, 600);
@@ -65,6 +65,7 @@
           display: block;
           @include font-style(2.4rem, $color-secondary, 600);
           text-transform: capitalize;
+          white-space: nowrap;
         }
       }
     }
@@ -79,7 +80,7 @@
         .card {
           width: calc((100% - 1.5rem) / 2);
 
-          &__category {
+          &__collection {
             margin-top: 1rem;
           }
         }
@@ -89,8 +90,6 @@
 }
 
 .continue-shopping-container {
-  background-color: $color-primary-light;
-
   .continue-shopping {
     @include section-style;
     padding-top: 7.77rem;

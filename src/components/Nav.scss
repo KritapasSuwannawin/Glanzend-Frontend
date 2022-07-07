@@ -1,8 +1,6 @@
 @import '../scss/main.scss';
 
 .nav-container {
-  background-color: $color-primary-light;
-
   .nav {
     @include section-style;
     padding-top: 6.4rem;
@@ -58,6 +56,12 @@
       & > * {
         flex: unset;
       }
+
+      &__link-container {
+        width: 100%;
+        justify-content: space-evenly;
+        column-gap: unset;
+      }
     }
   }
 
@@ -65,10 +69,6 @@
     .nav {
       &__logo {
         font-size: 3rem;
-      }
-
-      &__link-container {
-        column-gap: 3rem;
       }
     }
   }
@@ -80,8 +80,6 @@
       }
 
       &__link-container {
-        column-gap: 1.5rem;
-
         .nav-link {
           font-size: 1.4rem;
         }
@@ -104,8 +102,6 @@
       }
 
       &__link-container {
-        column-gap: 1rem;
-
         .nav-link {
           font-size: 1.2rem;
         }

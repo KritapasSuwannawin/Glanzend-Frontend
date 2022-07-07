@@ -1,0 +1,405 @@
+@import '../scss/main.scss';
+
+.checkout {
+  .title-container {
+    @include section-style;
+
+    .title {
+      @include title-page-style;
+    }
+  }
+
+  .content-container {
+    @include section-style;
+    display: flex;
+    column-gap: 5.5rem;
+    font-family: $font-sans-serif;
+    line-height: 150%;
+    margin-bottom: 3rem;
+
+    .address {
+      display: grid;
+      grid-template-columns: repeat(6, 8rem);
+      gap: 3.3rem;
+
+      &__input-container {
+        label,
+        input {
+          display: block;
+        }
+
+        label {
+          font-weight: 600;
+          font-size: 2.4rem;
+          color: $color-primary;
+          margin-bottom: 1.75rem;
+        }
+
+        input {
+          outline: none;
+          border: 1px solid rgba($color-primary, 0.5);
+          font-size: 2rem;
+          color: rgba($color-secondary, 0.8);
+          padding: 1rem 1.5rem;
+          width: 100%;
+
+          &:focus {
+            border: 1px solid rgba($color-primary, 1);
+          }
+
+          &::placeholder {
+            color: rgba($color-secondary, 0.6);
+          }
+        }
+
+        &.left {
+          grid-column: 1 / span 3;
+
+          &.long {
+            grid-column: 1 / span 4;
+          }
+        }
+
+        &.right {
+          grid-column: 4 / span 3;
+
+          &.short {
+            grid-column: 5 / span 2;
+          }
+        }
+      }
+    }
+
+    .summary {
+      width: 100%;
+
+      &__order {
+        &--title {
+          font-weight: 600;
+          font-size: 2.4rem;
+          color: $color-primary;
+          margin-bottom: 1.75rem;
+        }
+
+        &--item-container {
+          background-color: rgba(#fff, 0.8);
+          width: 100%;
+          padding: 3.25rem 2.5rem;
+          margin-bottom: 3.35rem;
+
+          .card {
+            display: flex;
+            column-gap: 2.6rem;
+
+            &:not(:last-child) {
+              margin-bottom: 1.7rem;
+            }
+
+            &__img {
+              min-width: 11.6rem;
+              width: 11.6rem;
+              height: 11.6rem;
+              background-color: $box-color;
+            }
+
+            &__detail {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              width: 100%;
+              text-transform: capitalize;
+
+              &--collection {
+                font-size: 1.4rem;
+                color: $color-primary;
+              }
+
+              &--name-price {
+                @include flex-row-center;
+                justify-content: space-between;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: $color-secondary;
+
+                .name {
+                  font-size: 1.6rem;
+                }
+
+                .price {
+                  font-size: 2.4rem;
+                }
+              }
+
+              &--spec {
+                font-size: 1.4rem;
+                color: $color-secondary-light;
+              }
+            }
+          }
+        }
+
+        &--detail {
+          padding-left: 5rem;
+          .sub-detail {
+            @include flex-row-center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+
+            .text {
+              color: $color-primary;
+            }
+
+            .number {
+              color: $color-secondary;
+            }
+
+            &.total {
+              margin-top: 3.5rem;
+              padding: 3rem;
+              background-color: rgba(#fff, 1);
+              font-size: 3rem;
+            }
+          }
+
+          .btn-container {
+            @include flex-row-center;
+            justify-content: flex-end;
+            margin-top: 4.5rem;
+
+            .back-btn {
+              font-weight: 600;
+              font-size: 2.4rem;
+              color: $color-primary;
+              margin-right: 3.5rem;
+              white-space: nowrap;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .submit-btn {
+              @include btn-style('solid', 2.4rem, 1.5rem, 4rem);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .perk-container {
+    @include section-style;
+    margin-bottom: 4.8rem;
+
+    .perk {
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-bottom: 3.1rem;
+      }
+
+      &__icon-container {
+        width: 5.5rem;
+        text-align: center;
+        margin-right: 3.8rem;
+
+        .icon {
+          margin-top: 1rem;
+        }
+      }
+
+      &__text-container {
+        color: $color-primary;
+
+        .top {
+          font-weight: 600;
+          font-size: 2.4rem;
+        }
+
+        .bottom {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .content-container {
+      .address {
+        grid-template-columns: repeat(6, 7rem);
+        gap: 3rem;
+      }
+
+      .summary {
+        &__order {
+          &--detail {
+            padding-left: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) and (min-width: 1000px) {
+    .content-container {
+      .address {
+        grid-template-columns: repeat(4, 8rem);
+
+        &__input-container {
+          &.left {
+            grid-column: 1 / span 4;
+
+            &.long {
+              grid-column: 1 / span 4;
+            }
+          }
+
+          &.right {
+            grid-column: 1 / span 4;
+
+            &.short {
+              grid-column: 1 / span 4;
+            }
+          }
+        }
+      }
+
+      .summary {
+        &__order {
+          &--detail {
+            .btn-container {
+              .submit-btn {
+                padding-left: 3.5rem;
+                padding-right: 3.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .content-container {
+      flex-direction: column;
+      margin-bottom: 5rem;
+
+      .address {
+        margin-bottom: 5rem;
+      }
+
+      .summary {
+        &__order {
+          &--detail {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .content-container {
+      .address {
+        grid-template-columns: repeat(4, 8rem);
+
+        &__input-container {
+          &.left {
+            grid-column: 1 / span 4;
+
+            &.long {
+              grid-column: 1 / span 4;
+            }
+          }
+
+          &.right {
+            grid-column: 1 / span 4;
+
+            &.short {
+              grid-column: 1 / span 4;
+            }
+          }
+        }
+      }
+
+      .summary {
+        &__order {
+          &--detail {
+            .sub-detail {
+              &.total {
+                padding: 2rem;
+                font-size: 2.6rem;
+              }
+            }
+
+            .btn-container {
+              .back-btn,
+              .submit-btn {
+                font-size: 2.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .perk-container {
+      .perk {
+        &__text-container {
+          .top {
+            font-size: 2rem;
+          }
+
+          .bottom {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content-container {
+      .address {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3rem;
+      }
+
+      .summary {
+        &__order {
+          &--item-container {
+            .card {
+              flex-direction: column;
+              row-gap: 1rem;
+
+              &__detail {
+                row-gap: 0.5rem;
+              }
+            }
+          }
+
+          &--detail {
+            .sub-detail {
+              font-size: 2rem;
+
+              &.total {
+                font-size: 2.4rem;
+              }
+            }
+
+            .btn-container {
+              .back-btn,
+              .submit-btn {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

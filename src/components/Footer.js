@@ -44,16 +44,16 @@ function Footer(props) {
           </div>
           <div className="column">
             <p className="column__title">Information</p>
-            <Link to="/help/faq" className="column__link">
+            <Link to="/info/faq" className="column__link">
               FAQ
             </Link>
-            <Link to="/help/term" className="column__link">
+            <Link to="/info/term" className="column__link">
               Terms
             </Link>
-            <Link to="/help/delivery" className="column__link">
+            <Link to="/info/delivery" className="column__link">
               Delivery Info
             </Link>
-            <Link to="/help/size" className="column__link">
+            <Link to="/info/size" className="column__link">
               Size Guide
             </Link>
           </div>

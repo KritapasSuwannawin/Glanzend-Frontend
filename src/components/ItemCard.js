@@ -10,7 +10,7 @@ import crossIcon from '../icon/Cross Icon.svg';
 import './ItemCard.scss';
 
 function ItemCard(props) {
-  const { toggleCheckItemHandler, item } = props;
+  const { toggleCheckItemHandler, quantityChangeHandler, item } = props;
 
   const {
     id: itemID,
@@ -69,6 +69,10 @@ function ItemCard(props) {
   }
 
   function updateDatabase(column, value) {
+    if (column === 'quantity' && quantityChangeHandler) {
+      quantityChangeHandler(itemID, value);
+    }
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item`, {
       method: 'PUT',
       headers: {
@@ -124,7 +128,7 @@ function ItemCard(props) {
           <Link to={`/product/${productID}`} className="name">
             {productName}
           </Link>
-          <p className="price">$ {price.toFixed(2)}</p>
+          <p className="price">${price.toFixed(2)}</p>
           {type === 'cart' && (
             <p className="size-color">
               Size: {sizeName} | Color: {colorName}

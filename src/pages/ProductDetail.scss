@@ -1,8 +1,6 @@
 @import '../scss/main.scss';
 
 .product-detail {
-  background-color: $color-primary-light;
-
   @mixin font-style($font-size, $color, $font-weight: 500) {
     font-family: $font-sans-serif;
     font-weight: $font-weight;
@@ -37,7 +35,6 @@
 
   .detail-container {
     @include section-style('wide');
-    background-color: $color-primary-light;
     padding-bottom: 14.6rem;
 
     .detail {

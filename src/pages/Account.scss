@@ -1,8 +1,6 @@
 @import '../scss/main.scss';
 
 .account {
-  background-color: $color-primary-light;
-
   .title-container {
     @include section-style;
 

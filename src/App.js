@@ -30,7 +30,7 @@ function App() {
       <Route exact path="/wishlist">
         <Wishlist></Wishlist>
       </Route>
-      <Route exact path="/cart">
+      <Route path="/cart">
         <Cart></Cart>
       </Route>
       <Route exact path="/account">

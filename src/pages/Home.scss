@@ -2,8 +2,6 @@
 
 .home {
   .landing-container {
-    background-color: $color-primary-light;
-
     .landing {
       @include section-style;
       padding-top: 1.5rem;
@@ -106,8 +104,6 @@
   }
 
   .category-container {
-    background-color: $color-primary-light;
-
     .category {
       @include section-style;
 
@@ -146,8 +142,6 @@
   }
 
   .collection-container {
-    background-color: $color-primary-light;
-
     .collection {
       @include section-style;
       padding-top: 9.5rem;

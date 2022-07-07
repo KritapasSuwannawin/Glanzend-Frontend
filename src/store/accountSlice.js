@@ -25,6 +25,9 @@ const accountSlice = createSlice({
         state.cartLineItemIDArr.splice(index, 1);
       }
     },
+    removeIDArrFromCartLineItemIDArr(state, action) {
+      state.cartLineItemIDArr = state.cartLineItemIDArr.filter((id) => !action.payload.includes(id));
+    },
   },
 });
 

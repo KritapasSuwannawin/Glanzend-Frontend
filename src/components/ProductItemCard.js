@@ -47,7 +47,7 @@ function ProductItemCard(props) {
       </div>
       <div className="product-item-card__price">
         <img src={shoppingBagIcon} alt="" className="product-item-card__price--icon"></img>
-        <p className="product-item-card__price--amount">$ {price}</p>
+        <p className="product-item-card__price--amount">${price}</p>
       </div>
     </div>
   );

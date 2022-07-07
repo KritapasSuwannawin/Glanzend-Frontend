@@ -134,25 +134,25 @@ function ProductSidebar(props) {
           className={`section__choice ${minPrice === 1 ? 'active' : ''}`}
           onClick={priceClickHandler.bind({ minPrice: 1, maxPrice: 25 })}
         >
-          $ 1 - $ 25
+          $1 - $25
         </div>
         <div
           className={`section__choice ${minPrice === 25 ? 'active' : ''}`}
           onClick={priceClickHandler.bind({ minPrice: 25, maxPrice: 50 })}
         >
-          $ 25 - $ 50
+          $25 - $50
         </div>
         <div
           className={`section__choice ${minPrice === 50 ? 'active' : ''}`}
           onClick={priceClickHandler.bind({ minPrice: 50, maxPrice: 100 })}
         >
-          $ 50 - $ 100
+          $50 - $100
         </div>
         <div
           className={`section__choice ${minPrice === 100 ? 'active' : ''}`}
           onClick={priceClickHandler.bind({ minPrice: 100, maxPrice: 150 })}
         >
-          $ 100 - $ 150
+          $100 - $150
         </div>
       </div>
       <div className="section">
