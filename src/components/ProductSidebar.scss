@@ -7,7 +7,6 @@
 
   .section {
     &__title {
-      font-family: $font-sans-serif;
       font-weight: 600;
       font-size: 3rem;
       line-height: 120%;
@@ -26,7 +25,6 @@
     }
 
     &__choice {
-      font-family: $font-sans-serif;
       font-size: 2.4rem;
       line-height: 142%;
       color: $color-secondary-light;
@@ -60,7 +58,6 @@
 
         &.plus {
           padding-top: 0;
-          font-family: $font-sans-serif;
           font-size: 2.4rem;
           line-height: 125%;
           text-align: center;

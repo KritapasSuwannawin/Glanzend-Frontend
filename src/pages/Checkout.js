@@ -33,7 +33,6 @@ function Checkout(props) {
   const securityCodeRef = useRef();
   const expirationDateRef = useRef();
 
-  const checkoutItemIDArr = checkoutItemArr.map((item) => item.id);
   const total = checkoutItemArr.reduce((prev, current) => prev + current.price * current.quantity, 0);
 
   useEffect(() => {
@@ -88,43 +87,24 @@ function Checkout(props) {
     const phoneNumber = e.target[6].value;
     const email = e.target[7].value;
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account`, {
-      method: 'PUT',
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/sale-order`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         accountID,
-        firstName,
-        lastName,
-        address,
-        zipCode,
-        city,
-        country,
-        phoneNumber,
-        email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        const { status, message } = json;
-
-        if (status === 'error') {
-          throw new Error(message);
-        }
-      })
-      .catch((err) => console.log(err));
-
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        accountID,
-        lineItemIDArr: checkoutItemIDArr,
-        operationType: 'checkout',
-        lineItem: checkoutItemArr[0],
+        lineItemArr: checkoutItemArr,
+        shippingInfo: {
+          firstName,
+          lastName,
+          address,
+          zipCode,
+          city,
+          country,
+          phoneNumber,
+          email,
+        },
       }),
     })
       .then((res) => res.json())

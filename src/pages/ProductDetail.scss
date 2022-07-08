@@ -2,7 +2,6 @@
 
 .product-detail {
   @mixin font-style($font-size, $color, $font-weight: 500) {
-    font-family: $font-sans-serif;
     font-weight: $font-weight;
     font-size: $font-size;
     line-height: 150%;

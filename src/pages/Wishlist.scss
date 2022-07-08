@@ -22,8 +22,7 @@
   //   }
 
   //   &__label {
-  //     font-family: $font-sans-serif;
-  //     font-weight: 500;
+  //       //     font-weight: 500;
   //     font-size: 1.8rem;
   //     line-height: 150%;
   //     color: $color-secondary;
@@ -35,15 +34,6 @@
     max-width: 1200px;
     margin-bottom: 10.75rem;
     min-height: 5rem;
-
-    .card {
-      padding: 3.3rem 0;
-      border-bottom: 1px solid $color-primary;
-
-      &:first-child {
-        padding-top: 0;
-      }
-    }
   }
 
   .add-to-cart {
@@ -68,7 +58,6 @@
       }
 
       &--label {
-        font-family: $font-sans-serif;
         font-weight: 600;
         font-size: 2rem;
         color: $color-primary;

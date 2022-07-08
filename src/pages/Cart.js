@@ -223,13 +223,11 @@ function Cart(props) {
               </label>
             </div> */}
               {cartLineItemArr.map((item) => (
-                <div key={item.id} className="main-container__left--card">
-                  <ItemCard
-                    item={item}
-                    toggleCheckItemHandler={toggleCheckItemHandler}
-                    quantityChangeHandler={quantityChangeHandler}
-                  ></ItemCard>
-                </div>
+                <ItemCard
+                  item={item}
+                  toggleCheckItemHandler={toggleCheckItemHandler}
+                  quantityChangeHandler={quantityChangeHandler}
+                ></ItemCard>
               ))}
             </>
           )}

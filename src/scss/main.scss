@@ -58,7 +58,6 @@ button {
 }
 
 @mixin btn-style($style, $font-size, $padding-vertical, $padding-horizontal) {
-  font-family: $font-sans-serif;
   padding: $padding-vertical $padding-horizontal;
   font-weight: 600;
   line-height: 150%;

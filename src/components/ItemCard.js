@@ -111,7 +111,7 @@ function ItemCard(props) {
   }
 
   return (
-    <div className={`item-card ${type}`}>
+    <div className={`item-card ${type}`} key={itemID}>
       <div className="left">
         <input
           type="checkbox"

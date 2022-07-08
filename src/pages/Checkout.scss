@@ -13,7 +13,6 @@
     @include section-style;
     display: flex;
     column-gap: 5.5rem;
-    font-family: $font-sans-serif;
     line-height: 150%;
     margin-bottom: 3rem;
 
@@ -38,6 +37,7 @@
         input {
           outline: none;
           border: 1px solid rgba($color-primary, 0.5);
+          font-family: inherit;
           font-size: 2rem;
           color: rgba($color-secondary, 0.8);
           padding: 1rem 1.5rem;
@@ -217,6 +217,7 @@
         .top {
           font-weight: 600;
           font-size: 2.4rem;
+          margin-bottom: 1rem;
         }
 
         .bottom {

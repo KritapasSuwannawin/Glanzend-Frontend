@@ -1,0 +1,179 @@
+@import '../scss/main.scss';
+
+.order-card {
+  max-width: 72rem;
+
+  .header {
+    @include flex-row-center;
+    justify-content: space-between;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid lighten($color-secondary-light, 10);
+
+    &.hideBorder {
+      border-bottom: none;
+    }
+
+    &__left {
+      @include flex-row-center;
+      column-gap: 2.1rem;
+
+      &--id {
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 170%;
+        color: $color-primary;
+      }
+
+      &--date {
+        font-size: 1.4rem;
+        line-height: 170%;
+        color: $color-secondary;
+      }
+
+      &--status {
+        @include flex-row-center;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 170%;
+        padding-bottom: 0.4rem;
+
+        &.orange {
+          color: #eb9635;
+        }
+
+        &.green {
+          color: #95ccb5;
+        }
+
+        .icon {
+          margin-left: 1rem;
+        }
+      }
+
+      &--dot {
+        width: 2px;
+        height: 2px;
+        background-color: $color-secondary;
+        border-radius: 50%;
+      }
+    }
+
+    &__right {
+      &--icon {
+        padding: 0.5rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .body {
+    padding-bottom: 2.3rem;
+    border-top: 2px solid $color-primary;
+    border-bottom: 2px solid $color-primary;
+
+    &__item-card {
+      @include flex-row-center;
+      justify-content: space-between;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid lighten($color-secondary-light, 10);
+
+      &--left {
+        @include flex-row-center;
+
+        .img {
+          width: 5rem;
+          height: 5.5rem;
+          background-color: $box-color-light;
+          margin-right: 2rem;
+        }
+
+        .name {
+          font-size: 1.6rem;
+          color: $color-secondary;
+          text-transform: capitalize;
+          margin-right: 1rem;
+        }
+
+        .quantity {
+          font-size: 1.6rem;
+          color: $color-secondary-light;
+        }
+      }
+
+      &--right {
+        .amount {
+          font-size: 1.6rem;
+          color: $color-secondary;
+        }
+      }
+    }
+
+    &__amount {
+      @include flex-row-center;
+      justify-content: space-between;
+
+      &--text {
+        font-size: 1.6rem;
+        line-height: 170%;
+        color: $color-secondary-light;
+      }
+
+      &--number {
+        font-size: 2rem;
+        line-height: 100%;
+        color: $color-secondary;
+      }
+    }
+
+    &__detail {
+      @include flex-row-center;
+      justify-content: space-between;
+
+      &:not(:last-child) {
+        margin-bottom: 0.3rem;
+      }
+
+      &.top {
+        margin-top: 2.5rem;
+      }
+
+      &--left,
+      &--right {
+        font-size: 1.6rem;
+        line-height: 170%;
+        color: $color-secondary-light;
+
+        &.big {
+          font-size: 2rem;
+          color: $color-secondary;
+        }
+      }
+
+      &--left {
+        white-space: nowrap;
+        margin-right: 3rem;
+      }
+
+      &--right {
+        text-align: right;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header {
+      &__left {
+        column-gap: 1rem;
+
+        &--status {
+          .icon {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

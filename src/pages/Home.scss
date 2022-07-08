@@ -12,7 +12,6 @@
       }
 
       &__desc {
-        font-family: $font-sans-serif;
         font-size: 2rem;
         line-height: 170%;
         color: $color-secondary-light;
@@ -69,7 +68,6 @@
 
         &--desc {
           margin-left: 16rem;
-          font-family: $font-sans-serif;
           font-size: 1.8rem;
           line-height: 190%;
           color: $color-secondary-light;
@@ -80,7 +78,6 @@
           margin-top: 3rem;
 
           .value {
-            font-family: $font-sans-serif;
             font-weight: 600;
             font-size: 2rem;
             line-height: 150%;
@@ -130,7 +127,6 @@
           &__name {
             background-color: #fff;
             padding: 3rem 3.7rem 6rem 3.7rem;
-            font-family: $font-sans-serif;
             font-weight: 600;
             font-size: 3rem;
             color: $color-primary;
@@ -166,7 +162,6 @@
           }
 
           &__name {
-            font-family: $font-sans-serif;
             font-weight: 600;
             font-size: 3rem;
             color: $color-secondary;
@@ -220,7 +215,6 @@
           }
 
           &__name {
-            font-family: $font-sans-serif;
             font-weight: 600;
             font-size: 3.6rem;
             line-height: 120%;

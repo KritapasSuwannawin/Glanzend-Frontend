@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const accountSlice = createSlice({
   name: 'account',
-  initialState: { id: undefined, wishlistLineItemIDArr: [], cartLineItemIDArr: [], checkoutItemArr: [] },
+  initialState: { id: undefined, wishlistLineItemIDArr: [], cartLineItemIDArr: [], checkoutItemArr: [], orderIDArr: [] },
   reducers: {
     setID(state, action) {
       state.id = action.payload;
@@ -30,6 +30,9 @@ const accountSlice = createSlice({
     },
     setCheckoutItemArr(state, action) {
       state.checkoutItemArr = action.payload;
+    },
+    setOrderIDArr(state, action) {
+      state.orderIDArr = action.payload;
     },
   },
 });

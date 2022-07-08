@@ -23,7 +23,6 @@
       }
 
       &--desc {
-        font-family: $font-sans-serif;
         font-size: 1.8rem;
         line-height: 190%;
         color: $color-primary;
@@ -55,7 +54,6 @@
 
       .column {
         &__title {
-          font-family: $font-sans-serif;
           font-weight: 600;
           font-size: 1.8rem;
           color: $color-secondary;
@@ -64,12 +62,15 @@
 
         &__link {
           display: block;
-          font-family: $font-sans-serif;
           font-size: 1.4rem;
           color: $color-secondary-light;
 
           &:not(:last-child) {
             margin-bottom: 2.7rem;
+          }
+
+          &:hover {
+            cursor: pointer;
           }
         }
       }

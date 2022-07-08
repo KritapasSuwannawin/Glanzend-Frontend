@@ -18,13 +18,13 @@ function Footer(props) {
             Providing your everyday accessories<br></br> and stylish comfortable look.
           </p>
           <div className="footer__left--social-media-container">
-            <a href="https:google.com" rel="noreferrer" target="_blank">
+            <a href="/" rel="noreferrer" target="_blank">
               <img src={twitterIcon} alt="" className="icon small"></img>
             </a>
-            <a href="https:google.com" rel="noreferrer" target="_blank">
+            <a href="/" rel="noreferrer" target="_blank">
               <img src={facebookIcon} alt="" className="icon"></img>
             </a>
-            <a href="https:google.com" rel="noreferrer" target="_blank">
+            <a href="/" rel="noreferrer" target="_blank">
               <img src={instagramIcon} alt="" className="icon"></img>
             </a>
           </div>
@@ -32,33 +32,33 @@ function Footer(props) {
         <div className="footer__right">
           <div className="column">
             <p className="column__title">Company</p>
-            <Link to="/about" className="column__link">
+            <p to="/about" className="column__link">
               About Us
-            </Link>
-            <Link to="/contact" className="column__link">
+            </p>
+            <p to="/contact" className="column__link">
               Contact Us
-            </Link>
-            <Link to="/policy" className="column__link">
+            </p>
+            <p to="/policy" className="column__link">
               Privacy Policy
-            </Link>
-            <Link to="/press" className="column__link">
+            </p>
+            <p to="/press" className="column__link">
               Press
-            </Link>
+            </p>
           </div>
           <div className="column">
             <p className="column__title">Information</p>
-            <Link to="/info/faq" className="column__link">
+            <p to="/info/faq" className="column__link">
               FAQ
-            </Link>
-            <Link to="/info/term" className="column__link">
+            </p>
+            <p to="/info/term" className="column__link">
               Terms
-            </Link>
-            <Link to="/info/delivery" className="column__link">
+            </p>
+            <p to="/info/delivery" className="column__link">
               Delivery Info
-            </Link>
-            <Link to="/info/size" className="column__link">
+            </p>
+            <p to="/info/size" className="column__link">
               Size Guide
-            </Link>
+            </p>
           </div>
           <div className="column">
             <p className="column__title">Order</p>
@@ -71,9 +71,9 @@ function Footer(props) {
             <Link to="/account" className="column__link">
               My Account
             </Link>
-            <Link to="/shipping" className="column__link">
+            <p to="/shipping" className="column__link">
               Shipping
-            </Link>
+            </p>
           </div>
         </div>
       </div>

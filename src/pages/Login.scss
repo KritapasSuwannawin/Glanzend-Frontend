@@ -32,7 +32,6 @@
               position: absolute;
               content: '** This email was already used';
               color: $error-color;
-              font-family: $font-sans-serif;
               font-weight: 500;
               font-size: 1.2rem;
               line-height: 150%;
@@ -52,7 +51,6 @@
           }
 
           .label {
-            font-family: $font-sans-serif;
             font-weight: 600;
             font-size: 1.6rem;
             line-height: 170%;
@@ -67,7 +65,7 @@
             outline: none;
             border: none;
             border-bottom: 1px solid $box-color;
-            font-family: $font-sans-serif;
+            font-family: inherit;
             font-size: 1.5rem;
             color: $color-secondary;
             margin-top: 0.5rem;

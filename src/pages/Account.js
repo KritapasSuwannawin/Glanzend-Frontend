@@ -1,15 +1,23 @@
-import { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import { accountActions } from '../store/accountSlice';
 
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import OrderCard from '../components/OrderCard';
 import './Account.scss';
 
 function Account(props) {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const accountID = useSelector((store) => store.account.id);
+  const orderIDArr = useSelector((store) => store.account.orderIDArr);
+
+  const [isDoneStartup, setIsDoneStartup] = useState(false);
+  const [orderArr, setOrderArr] = useState([]);
 
   const firstNameRef = useRef();
   const lasttNameRef = useRef();
@@ -21,7 +29,9 @@ function Account(props) {
   const emailRef = useRef();
 
   useEffect(() => {
-    if (accountID) {
+    let cancel = false;
+
+    if (accountID && firstNameRef.current) {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account?id=${accountID}`, {
         method: 'GET',
         headers: {
@@ -47,8 +57,76 @@ function Account(props) {
           email && (emailRef.current.value = email);
         })
         .catch((err) => console.log(err));
+
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=order_id_arr`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          if (cancel) {
+            return;
+          }
+
+          const { status, data, message } = json;
+
+          if (status === 'error') {
+            throw new Error(message);
+          }
+
+          const { returnValue } = data;
+          dispatch(accountActions.setOrderIDArr(returnValue));
+
+          setIsDoneStartup(true);
+        })
+        .catch((err) => console.log(err));
     }
-  }, [accountID]);
+
+    return () => {
+      cancel = true;
+    };
+  }, [dispatch, accountID]);
+
+  useEffect(() => {
+    let cancel = false;
+
+    if (!isDoneStartup) {
+      return;
+    }
+
+    if (orderIDArr.length > 0 && accountID) {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/sale-order?order_id_arr=${orderIDArr}&account_id=${accountID}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          if (cancel) {
+            return;
+          }
+
+          const { status, data, message } = json;
+
+          if (status === 'error') {
+            throw new Error(message);
+          }
+
+          const { orderInfo } = data;
+          setOrderArr(orderInfo);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      setOrderArr([]);
+    }
+
+    return () => {
+      cancel = true;
+    };
+  }, [orderIDArr, accountID, isDoneStartup]);
 
   function formSubmitHandler(e) {
     e.preventDefault();
@@ -101,7 +179,7 @@ function Account(props) {
       <div className="title-container">
         <p className="title">My Account</p>
       </div>
-      <form className="form" onSubmit={formSubmitHandler}>
+      <form className={`form ${orderArr.length === 0 ? 'large-margin-bottom' : ''}`} onSubmit={formSubmitHandler}>
         <div className="form__input-container left">
           <label htmlFor="first-name">First Name</label>
           <input type="text" id="first-name" ref={firstNameRef}></input>
@@ -138,6 +216,14 @@ function Account(props) {
           Save Change
         </button>
       </form>
+      {orderArr.length > 0 && (
+        <div className="order">
+          <p className="order__title">Order Status</p>
+          {orderArr.map((order) => (
+            <OrderCard order={order}></OrderCard>
+          ))}
+        </div>
+      )}
       <Footer showBorderTop></Footer>
     </div>
   );
