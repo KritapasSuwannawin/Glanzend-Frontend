@@ -69,7 +69,6 @@ function Login(props) {
         const { id } = data;
 
         dispatch(accountActions.setID(id));
-        history.goBack();
       })
       .catch((err) => console.log(err));
   }

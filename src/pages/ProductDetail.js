@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams, Link, useHistory, Redirect } from 'react-router-dom';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -36,6 +36,8 @@ function ProductDetail(props) {
   const [sizeID, setSizeID] = useState();
   const [quantity, setQuantity] = useState(1);
   const [similarProductArr, setSimilarProductArr] = useState([]);
+
+  const [isRedirectRegister, setIsRediectRegister] = useState(false);
 
   useEffect(() => {
     let cancel = false;
@@ -158,7 +160,7 @@ function ProductDetail(props) {
 
   function addToWishListHandler() {
     if (!accountID) {
-      history.push('/register');
+      setIsRediectRegister(true);
       return;
     }
 
@@ -194,7 +196,7 @@ function ProductDetail(props) {
 
   function addToCartHandler() {
     if (!accountID) {
-      history.push('/register');
+      setIsRediectRegister(true);
       return;
     }
 
@@ -230,7 +232,7 @@ function ProductDetail(props) {
 
   function buyHandler() {
     if (!accountID) {
-      history.push('/register');
+      setIsRediectRegister(true);
       return;
     }
 
@@ -256,6 +258,10 @@ function ProductDetail(props) {
     );
 
     history.push('/cart/checkout');
+  }
+
+  if (isRedirectRegister) {
+    return <Redirect push to="/register"></Redirect>;
   }
 
   return (

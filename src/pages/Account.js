@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -11,7 +11,6 @@ import './Account.scss';
 
 function Account(props) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const accountID = useSelector((store) => store.account.id);
   const orderIDArr = useSelector((store) => store.account.orderIDArr);
@@ -169,8 +168,7 @@ function Account(props) {
   }
 
   if (!accountID) {
-    history.push('/register');
-    return <></>;
+    return <Redirect push to="/register"></Redirect>;
   }
 
   return (

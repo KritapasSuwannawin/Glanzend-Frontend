@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -202,8 +202,7 @@ function Cart(props) {
   }
 
   if (!accountID) {
-    history.push('/register');
-    return <></>;
+    return <Redirect push to="/register"></Redirect>;
   }
 
   return (

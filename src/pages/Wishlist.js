@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { accountActions } from '../store/accountSlice';
 
@@ -10,7 +10,6 @@ import ItemCard from '../components/ItemCard';
 import './Wishlist.scss';
 
 function Wishlist(props) {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const accountID = useSelector((store) => store.account.id);
@@ -158,8 +157,7 @@ function Wishlist(props) {
   }, []);
 
   if (!accountID) {
-    history.push('/register');
-    return <></>;
+    return <Redirect push to="/register"></Redirect>;
   }
 
   return (
