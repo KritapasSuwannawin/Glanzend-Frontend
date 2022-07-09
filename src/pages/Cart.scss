@@ -37,6 +37,11 @@
 
     &__left {
       flex: 0.65;
+
+      .card {
+        padding: 3.3rem 0;
+        border-bottom: 1px solid $color-primary;
+      }
     }
 
     &__right {

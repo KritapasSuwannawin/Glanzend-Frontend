@@ -20,6 +20,7 @@ function Product(props) {
   const colorID = useSelector((store) => store.product.colorID);
   const minPrice = useSelector((store) => store.product.minPrice);
   const maxPrice = useSelector((store) => store.product.maxPrice);
+  const searchString = useSelector((store) => store.product.searchString);
   const offset = useSelector((store) => store.product.offset);
   const view = useSelector((store) => store.product.view);
   const currentProductArr = useSelector((store) => store.product.currentProductArr);
@@ -91,6 +92,7 @@ function Product(props) {
         key === 'color_id' && dispatch(productActions.setColorID(+value));
         key === 'min_price' && dispatch(productActions.setMinPrice(+value));
         key === 'max_price' && dispatch(productActions.setMaxPrice(+value));
+        key === 'search' && dispatch(productActions.setSearchString(value));
       });
     }
 
@@ -120,8 +122,12 @@ function Product(props) {
       queryString += `${queryString.length > 0 ? '&' : '?'}min_price=${minPrice}&max_price=${maxPrice}`;
     }
 
+    if (searchString) {
+      queryString += `${queryString.length > 0 ? '&' : '?'}search=${searchString}`;
+    }
+
     history.replace(`/product${queryString}`);
-  }, [dispatch, history, isDoneStartup, collectionID, categoryID, colorID, minPrice, maxPrice]);
+  }, [dispatch, history, isDoneStartup, collectionID, categoryID, colorID, minPrice, maxPrice, searchString]);
 
   function loadMoreHandler() {
     dispatch(productActions.setOffset(offset + view));

@@ -186,7 +186,9 @@ function Wishlist(props) {
                 return true;
               })
               .map((item) => (
-                <ItemCard item={item} toggleCheckItemHandler={toggleCheckItemHandler}></ItemCard>
+                <div key={item.id} className="card">
+                  <ItemCard item={item} toggleCheckItemHandler={toggleCheckItemHandler}></ItemCard>
+                </div>
               ))}
             <div className="add-to-cart">
               <div className="add-to-cart__btn" onClick={addToCartClickHandler}>

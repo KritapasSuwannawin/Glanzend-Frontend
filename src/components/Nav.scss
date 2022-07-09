@@ -47,6 +47,30 @@
           cursor: pointer;
         }
       }
+
+      .search {
+        position: relative;
+
+        &__form {
+          position: absolute;
+          bottom: -6rem;
+          right: 0;
+
+          .input {
+            font-family: inherit;
+            font-size: 1.6rem;
+            padding: 1rem 2rem;
+            width: 32rem;
+            border-radius: 1.8rem;
+            outline: none;
+            border: 1px solid $color-secondary-light;
+
+            &::placeholder {
+              color: $color-secondary-light;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -90,6 +114,14 @@
         .icon {
           height: 1.8rem;
         }
+
+        .search {
+          &__form {
+            .input {
+              font-size: 1.4rem;
+            }
+          }
+        }
       }
     }
   }
@@ -112,6 +144,18 @@
 
         .icon {
           height: 1.2rem;
+        }
+
+        .search {
+          &__form {
+            bottom: -5rem;
+
+            .input {
+              font-size: 1.2rem;
+              width: 23rem;
+              padding: 0.5rem 1rem;
+            }
+          }
         }
       }
     }

@@ -64,7 +64,7 @@ function OrderCard(props) {
   const status = Math.floor((Date.now() - new Date(orderDate).getTime()) / (1000 * 60 * 60 * 24)) < 3 ? 'Going to you' : 'Delivered';
 
   return (
-    <div key={id} className="order-card">
+    <div className="order-card">
       <div className={`header ${isDropDown ? 'hideBorder' : ''}`}>
         <div className="header__left">
           <p className="header__left--id">ORDER{id}</p>

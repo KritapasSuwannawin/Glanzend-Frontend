@@ -1,4 +1,5 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, NavLink, useLocation, useHistory } from 'react-router-dom';
 
 import searchIcon from '../icon/Search Icon.svg';
 import userIcon from '../icon/User Icon.svg';
@@ -8,6 +9,22 @@ import './Nav.scss';
 
 function Nav(props) {
   const { pathname } = useLocation();
+  const history = useHistory();
+
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  function searchClickHandler() {
+    setShowSearchBar((prev) => !prev);
+  }
+
+  function searchSubmitHandler(e) {
+    e.preventDefault();
+    const search = e.target[0].value.trim().split(' ').join('_');
+
+    setShowSearchBar(false);
+
+    history.push(`/product${search.length > 0 ? `?search=${search}` : ''}`);
+  }
 
   return (
     <div className="nav-container">
@@ -27,8 +44,13 @@ function Nav(props) {
           </NavLink>
         </div>
         <div className="nav__icon-container">
-          <div>
-            <img src={searchIcon} alt="" className="icon"></img>
+          <div className="search">
+            <img src={searchIcon} alt="" className="icon" onClick={searchClickHandler}></img>
+            {showSearchBar && (
+              <form className="search__form" onSubmit={searchSubmitHandler}>
+                <input placeholder="What are you looking for?" className="input"></input>
+              </form>
+            )}
           </div>
           <Link to="/account">
             <img src={userIcon} alt="" className="icon"></img>

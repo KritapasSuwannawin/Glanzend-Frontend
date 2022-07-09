@@ -8,6 +8,7 @@ const productSlice = createSlice({
     colorID: undefined,
     minPrice: undefined,
     maxPrice: undefined,
+    searchString: undefined,
     offset: 0,
     view: 9,
     currentProductArr: [],
@@ -30,12 +31,16 @@ const productSlice = createSlice({
     setMaxPrice(state, action) {
       state.maxPrice = action.payload;
     },
+    setSearchString(state, action) {
+      state.searchString = action.payload;
+    },
     clearSearchHandler(state, action) {
       state.collectionID = undefined;
       state.categoryID = undefined;
       state.colorID = undefined;
       state.minPrice = undefined;
       state.maxPrice = undefined;
+      state.searchString = undefined;
     },
     setCurrentProductArr(state, action) {
       if (state.offset > 0) {

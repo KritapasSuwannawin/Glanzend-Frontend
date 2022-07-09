@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import AES from 'crypto-js/aes';
 
 import { accountActions } from '../store/accountSlice';
 
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 
 import './Register.scss';
 
