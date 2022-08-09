@@ -167,6 +167,10 @@ function Account(props) {
       .catch((err) => console.log(err));
   }
 
+  function logoutHandler() {
+    dispatch(accountActions.logoutHandler());
+  }
+
   if (!accountID) {
     return <Redirect push to="/register"></Redirect>;
   }
@@ -212,6 +216,9 @@ function Account(props) {
         </div>
         <button type="submit" className="form__btn">
           Save Change
+        </button>
+        <button className="form__logout-btn" onClick={logoutHandler}>
+          Log Out
         </button>
       </form>
       {orderArr.length > 0 && (

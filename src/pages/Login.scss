@@ -69,6 +69,7 @@
             font-size: 1.5rem;
             color: $color-secondary;
             margin-top: 0.5rem;
+            border-radius: 0;
 
             &.invalid {
               border-bottom: 1.5px solid $error-color;

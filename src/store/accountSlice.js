@@ -34,6 +34,16 @@ const accountSlice = createSlice({
     setOrderIDArr(state, action) {
       state.orderIDArr = action.payload;
     },
+    logoutHandler(state, action) {
+      localStorage.removeItem('glanzend-email');
+      localStorage.removeItem('glanzend-password');
+
+      state.id = undefined;
+      state.wishlistLineItemIDArr = [];
+      state.cartLineItemIDArr = [];
+      state.checkoutItemArr = [];
+      state.orderIDArr = [];
+    },
   },
 });
 

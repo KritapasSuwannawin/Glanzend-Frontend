@@ -71,6 +71,12 @@
       @include btn-style('solid', 2rem, 1.5rem, 2rem);
       margin-top: 2rem;
     }
+
+    &__logout-btn {
+      grid-column: 3 / span 2;
+      @include btn-style('solid', 2rem, 1.5rem, 2rem);
+      margin-top: 2rem;
+    }
   }
 
   .order {
@@ -135,6 +141,10 @@
             grid-column: 1 / span 3;
           }
         }
+      }
+
+      &__logout-btn {
+        grid-column: 1 / span 2;
       }
     }
   }
