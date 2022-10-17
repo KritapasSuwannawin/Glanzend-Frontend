@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import { resourceActions } from './store/resourceSlice';
 import { accountActions } from './store/accountSlice';
 
-import Home from './pages/Home';
-import Product from './pages/Product';
-import ProductDetail from './pages/ProductDetail';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Wishlist from './pages/Wishlist';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import CheckoutComplete from './pages/CheckoutComplete';
-import Account from './pages/Account';
+import Home from './pages/home/Home';
+import Product from './pages/product/Product';
+import ProductDetail from './pages/productDetail/ProductDetail';
+import Register from './pages/register/Register';
+import Login from './pages/login/Login';
+import Wishlist from './pages/wishlist/Wishlist';
+import Cart from './pages/cart/Cart';
+import Checkout from './pages/checkout/Checkout';
+import CheckoutComplete from './pages/checkoutComplete/CheckoutComplete';
+import Account from './pages/account/Account';
 
 function App() {
   const dispatch = useDispatch();
@@ -99,41 +99,19 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Switch>
-      <Route exact path="/">
-        <Home></Home>
-      </Route>
-      <Route exact path="/product">
-        <Product></Product>
-      </Route>
-      <Route exact path="/product/:id">
-        <ProductDetail></ProductDetail>
-      </Route>
-      <Route exact path="/register">
-        <Register></Register>
-      </Route>
-      <Route exact path="/login">
-        <Login></Login>
-      </Route>
-      <Route exact path="/wishlist">
-        <Wishlist></Wishlist>
-      </Route>
-      <Route exact path="/cart">
-        <Cart></Cart>
-      </Route>
-      <Route exact path="/cart/checkout">
-        <Checkout></Checkout>
-      </Route>
-      <Route exact path="/cart/checkout/complete">
-        <CheckoutComplete></CheckoutComplete>
-      </Route>
-      <Route exact path="/account">
-        <Account></Account>
-      </Route>
-      <Route path="/">
-        <Redirect to="/"></Redirect>
-      </Route>
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home></Home>}></Route>
+      <Route path="/product" element={<Product></Product>}></Route>
+      <Route path="/product/:id" element={<ProductDetail></ProductDetail>}></Route>
+      <Route path="/register" element={<Register></Register>}></Route>
+      <Route path="/login" element={<Login></Login>}></Route>
+      <Route path="/wishlist" element={<Wishlist></Wishlist>}></Route>
+      <Route path="/cart" element={<Cart></Cart>}></Route>
+      <Route path="/cart/checkout" element={<Checkout></Checkout>}></Route>
+      <Route path="/cart/checkout/complete" element={<CheckoutComplete></CheckoutComplete>}></Route>
+      <Route path="/account" element={<Account></Account>}></Route>
+      <Route path="/*" element={<Navigate replace to="/"></Navigate>}></Route>
+    </Routes>
   );
 }
 

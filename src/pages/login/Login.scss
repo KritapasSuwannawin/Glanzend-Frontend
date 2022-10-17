@@ -1,0 +1,115 @@
+@import '../../scss/main.scss';
+
+.login {
+  .form-container {
+    @include flex-row-center;
+    padding-top: 6rem;
+    padding-bottom: 12rem;
+
+    .form {
+      background-color: #fff;
+      border-radius: 3.6rem;
+      padding: 6rem;
+
+      &__title {
+        font-family: $font-serif;
+        font-size: 4rem;
+        color: #5e5b5b;
+      }
+
+      &__top {
+        display: grid;
+        grid-template-columns: 48rem;
+        row-gap: 3rem;
+        margin-top: 4.3rem;
+
+        &--input-container {
+          &.invalid-email,
+          &.invalid-password {
+            position: relative;
+
+            &::after {
+              position: absolute;
+              content: '** This email was already used';
+              color: $error-color;
+              font-weight: 500;
+              font-size: 1.2rem;
+              line-height: 150%;
+            }
+          }
+
+          &.invalid-email {
+            &::after {
+              content: '** This email was not yet registered';
+            }
+          }
+
+          &.invalid-password {
+            &::after {
+              content: '** Invalid password';
+            }
+          }
+
+          .label {
+            font-weight: 600;
+            font-size: 1.6rem;
+            line-height: 170%;
+            color: $color-primary;
+            display: block;
+            opacity: 0.95;
+          }
+
+          .input {
+            display: block;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid $box-color;
+            font-family: inherit;
+            font-size: 1.5rem;
+            color: $color-secondary;
+            margin-top: 0.5rem;
+            border-radius: 0;
+
+            &.invalid {
+              border-bottom: 1.5px solid $error-color;
+            }
+          }
+        }
+      }
+
+      &__btn {
+        @include btn-style('solid', 1.6rem, 1.5rem, 2.5rem);
+        margin-top: 4.3rem;
+      }
+
+      @media (max-width: 800px) {
+        padding: 4rem;
+        border-radius: 3rem;
+
+        &__title {
+          font-size: 3rem;
+        }
+
+        &__top {
+          &--input-container {
+            .label,
+            .input {
+              font-size: 1.4rem;
+            }
+          }
+        }
+
+        &__btn {
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        &__top {
+          grid-template-columns: 25rem;
+        }
+      }
+    }
+  }
+}

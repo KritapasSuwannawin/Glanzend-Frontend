@@ -1,0 +1,30 @@
+@import '../../scss/main.scss';
+
+.checkout-complete {
+  .landing {
+    @include section-style;
+    margin-top: 15rem;
+    text-align: center;
+
+    &__title {
+      @include title-style;
+    }
+
+    &__desc {
+      font-size: 1.8rem;
+      line-height: 180%;
+      color: $color-secondary;
+      max-width: 60%;
+      margin: 3.2rem auto 0 auto;
+
+      @media (max-width: 1200px) {
+        max-width: 75%;
+      }
+    }
+
+    &__btn {
+      @include btn-style('solid', 2.4rem, 1.5rem, 3.8rem);
+      margin: 15rem auto 10rem auto;
+    }
+  }
+}
