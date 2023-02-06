@@ -5,7 +5,7 @@
     @include section-style;
 
     .title {
-      @include title-page-style;
+      @include title-page-style('no-padding-top');
     }
   }
 
@@ -71,6 +71,12 @@
   }
 
   @media (max-width: 600px) {
+    .card-container {
+      .card:first-child {
+        padding-top: 0;
+      }
+    }
+
     .add-to-cart {
       flex-direction: column-reverse;
       align-items: flex-start;

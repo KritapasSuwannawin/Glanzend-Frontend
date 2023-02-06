@@ -28,8 +28,10 @@ function Register(props) {
   function formSubmitHandler(e) {
     e.preventDefault();
 
-    const password = e.target[4].value;
-    const confirmPassword = e.target[5].value;
+    // const password = e.target[4].value;
+    // const confirmPassword = e.target[5].value;
+    const password = e.target[3].value;
+    const confirmPassword = e.target[4].value;
 
     if (password !== confirmPassword) {
       setIsInValidPassword(true);
@@ -40,8 +42,9 @@ function Register(props) {
 
     const firstName = e.target[0].value;
     const lastName = e.target[1].value;
-    const phoneNumber = e.target[2].value;
-    const email = e.target[3].value;
+    // const phoneNumber = e.target[2].value;
+    // const email = e.target[3].value;
+    const email = e.target[2].value;
 
     const encryptedPassword = AES.encrypt(password, process.env.REACT_APP_PRIVATE_KEY).toString();
 
@@ -50,7 +53,7 @@ function Register(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName, lastName, phoneNumber, email, encryptedPassword }),
+      body: JSON.stringify({ firstName, lastName, phoneNumber: '', email, encryptedPassword }),
     })
       .then((res) => res.json())
       .then((json) => {
@@ -102,12 +105,12 @@ function Register(props) {
               </label>
               <input className="input" type="text" id="last-name" required></input>
             </div>
-            <div className="form__top--input-container">
+            {/* <div className="form__top--input-container">
               <label className="label" htmlFor="phone-number">
                 Enter your phone number
               </label>
               <input className="input" type="tel" id="phone-number" required></input>
-            </div>
+            </div> */}
             <div className={`form__top--input-container ${isInvalidEmail ? 'invalid-email' : ''}`}>
               <label className="label" htmlFor="email">
                 Enter your email

@@ -28,7 +28,7 @@
     @include section-style;
 
     .title {
-      @include title-page-style;
+      @include title-page-style('no-padding-top');
     }
   }
 
@@ -389,6 +389,8 @@
 
   @media (max-width: 600px) {
     .detail-container {
+      padding-bottom: 12rem;
+
       .detail {
         &__left {
           column-gap: 2rem;

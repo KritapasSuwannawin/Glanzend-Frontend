@@ -1,3 +1,5 @@
+@import './variables';
+
 @mixin section-style($style: 'normal') {
   margin: 0 auto;
 
@@ -64,4 +66,66 @@
   webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@mixin title-style {
+  font-family: $font-serif;
+  font-size: 8rem;
+  line-height: 115%;
+  letter-spacing: 0.02em;
+  color: $color-secondary;
+
+  @media (max-width: 1000px) {
+    font-size: 7rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 6rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 4rem;
+  }
+}
+
+@mixin title-page-style($style: 'normal') {
+  @include title-style;
+  padding-top: 6rem;
+  margin-bottom: 10rem;
+  margin-left: -0.3rem;
+
+  @media (max-width: 600px) {
+    @if $style == 'no-padding-top' {
+      padding-top: 0;
+    }
+
+    margin-bottom: 6rem;
+  }
+}
+
+@mixin btn-style($style, $font-size, $padding-vertical, $padding-horizontal) {
+  padding: $padding-vertical $padding-horizontal;
+  font-weight: 600;
+  line-height: 150%;
+  display: block;
+  width: fit-content;
+  font-size: $font-size;
+
+  @if $style == 'regular' {
+    color: $color-primary;
+    border: 1px solid $color-primary;
+  }
+
+  @if $style == 'solid' {
+    color: #fff;
+    background-color: $color-primary;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 800px) {
+    padding: ($padding-vertical * 0.8) ($padding-horizontal * 0.8);
+  }
 }

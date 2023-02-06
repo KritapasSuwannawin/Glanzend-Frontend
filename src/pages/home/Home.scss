@@ -442,6 +442,8 @@
   @media (max-width: 600px) {
     .landing-container {
       .landing {
+        padding-top: 0;
+
         &__desc,
         &__btn {
           font-size: 1.4rem;
@@ -467,6 +469,7 @@
       .why-us {
         flex-direction: column;
         row-gap: 5rem;
+        padding-top: 10rem;
 
         &__right {
           &--desc,
@@ -481,7 +484,12 @@
       .category {
         &__card-container {
           .card {
+            &__img {
+              padding-top: 175%;
+            }
+
             &__name {
+              padding-bottom: 4rem;
               font-size: 1.8rem;
             }
           }
@@ -491,6 +499,8 @@
 
     .collection-container {
       .collection {
+        padding-bottom: 11rem;
+
         &__card-container {
           .card {
             width: 90%;
@@ -500,6 +510,13 @@
             }
           }
         }
+      }
+    }
+
+    .offer-container {
+      .offer {
+        padding-top: 10rem;
+        padding-bottom: 12rem;
       }
     }
   }

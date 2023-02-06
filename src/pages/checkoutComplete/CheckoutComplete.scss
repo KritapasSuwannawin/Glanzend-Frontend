@@ -27,4 +27,20 @@
       margin: 15rem auto 10rem auto;
     }
   }
+
+  @media (max-width: 600px) {
+    .landing {
+      margin-top: 5rem;
+
+      &__desc {
+        max-width: 85%;
+        font-size: 1.6rem;
+      }
+
+      &__btn {
+        @include btn-style('solid', 1.6rem, 1.5rem, 4rem);
+        margin-top: 8rem;
+      }
+    }
+  }
 }

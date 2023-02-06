@@ -9,6 +9,8 @@ import downArrowIcon from '../../icon/Down Arrow Icon.svg';
 import './OrderCard.scss';
 
 function OrderCard(props) {
+  const { showDetail, order } = props;
+
   const {
     id,
     account_id: accountID,
@@ -18,10 +20,10 @@ function OrderCard(props) {
     city,
     country,
     zip_code: zipCode,
-  } = props.order;
+  } = order;
 
   const [lineItemArr, setLineItemArr] = useState([]);
-  const [isDropDown, setIsDropDown] = useState(false);
+  const [isDropDown, setIsDropDown] = useState(showDetail);
 
   useEffect(() => {
     let cancel = false;

@@ -5,7 +5,7 @@
     @include section-style;
 
     .title {
-      @include title-page-style;
+      @include title-page-style('no-padding-top');
     }
   }
 
@@ -68,13 +68,13 @@
 
     &__btn {
       grid-column: 1 / span 2;
-      @include btn-style('solid', 2rem, 1.5rem, 2rem);
+      @include btn-style('solid', 1.8rem, 1.5rem, 2rem);
       margin-top: 2rem;
     }
 
     &__logout-btn {
       grid-column: 3 / span 2;
-      @include btn-style('solid', 2rem, 1.5rem, 2rem);
+      @include btn-style('solid', 1.8rem, 1.5rem, 2rem);
       margin-top: 2rem;
     }
   }
@@ -126,6 +126,14 @@
       grid-template-columns: repeat(3, 8rem);
 
       &__input-container {
+        label {
+          font-size: 1.6rem;
+        }
+
+        input {
+          font-size: 1.8rem;
+        }
+
         &.left {
           grid-column: 1 / span 3;
 
@@ -143,9 +151,19 @@
         }
       }
 
+      &__btn {
+        @include btn-style('solid', 1.6rem, 1.5rem, 3rem);
+      }
+
       &__logout-btn {
         grid-column: 1 / span 2;
+        margin-top: 0;
+        @include btn-style('solid', 1.6rem, 1.5rem, 3rem);
       }
+    }
+
+    .order {
+      margin-bottom: 12rem;
     }
   }
 }

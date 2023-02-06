@@ -224,9 +224,9 @@ function Account(props) {
       {orderArr.length > 0 && (
         <div className="order">
           <p className="order__title">Order Status</p>
-          {orderArr.map((order) => (
+          {orderArr.map((order, i) => (
             <div key={order.id} className="order__card">
-              <OrderCard order={order}></OrderCard>
+              <OrderCard order={order} showDetail={i === 0}></OrderCard>
             </div>
           ))}
         </div>
