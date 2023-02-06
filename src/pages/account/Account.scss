@@ -68,13 +68,13 @@
 
     &__btn {
       grid-column: 1 / span 2;
-      @include btn-style('solid', 1.8rem, 1.5rem, 2rem);
+      @include btn-style('solid', 1.8rem, 1.5rem, 3rem);
       margin-top: 2rem;
     }
 
     &__logout-btn {
       grid-column: 3 / span 2;
-      @include btn-style('solid', 1.8rem, 1.5rem, 2rem);
+      @include btn-style('solid', 1.8rem, 1.5rem, 3rem);
       margin-top: 2rem;
     }
   }

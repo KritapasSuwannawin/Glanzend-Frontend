@@ -153,7 +153,7 @@ function Register(props) {
               <input id="checkbox" type="checkbox" className="checkbox" required></input>
               <label htmlFor="checkbox" className="text">
                 I agree with the{' '}
-                <Link to="/privacy-policy" className="link">
+                <Link to="#" className="link">
                   Privacy policy
                 </Link>
               </label>

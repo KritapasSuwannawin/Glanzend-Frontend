@@ -159,7 +159,7 @@
               margin-top: 3.5rem;
               padding: 3rem;
               background-color: rgba(#fff, 1);
-              font-size: 3rem;
+              font-size: 2.4rem;
             }
           }
 
@@ -170,7 +170,7 @@
 
             .back-btn {
               font-weight: 600;
-              font-size: 2.4rem;
+              font-size: 2.2rem;
               color: $color-primary;
               margin-right: 3.5rem;
               white-space: nowrap;
@@ -181,7 +181,7 @@
             }
 
             .submit-btn {
-              @include btn-style('solid', 2.4rem, 1.5rem, 4rem);
+              @include btn-style('solid', 2.2rem, 1.5rem, 4rem);
             }
           }
         }
@@ -202,7 +202,7 @@
       }
 
       &__icon-container {
-        width: 5.5rem;
+        min-width: 5.5rem;
         text-align: center;
         margin-right: 3.8rem;
 
@@ -332,14 +332,6 @@
             .sub-detail {
               &.total {
                 padding: 2rem;
-                font-size: 2.6rem;
-              }
-            }
-
-            .btn-container {
-              .back-btn,
-              .submit-btn {
-                font-size: 2.2rem;
               }
             }
           }

@@ -3,7 +3,7 @@
 .checkout-complete {
   .landing {
     @include section-style;
-    margin-top: 15rem;
+    margin-top: 10rem;
     text-align: center;
 
     &__title {
@@ -23,7 +23,7 @@
     }
 
     &__btn {
-      @include btn-style('solid', 2.4rem, 1.5rem, 3.8rem);
+      @include btn-style('solid', 2.4rem, 1.5rem, 4rem);
       margin: 15rem auto 10rem auto;
     }
   }
@@ -38,7 +38,7 @@
       }
 
       &__btn {
-        @include btn-style('solid', 1.6rem, 1.5rem, 4rem);
+        font-size: 1.6rem;
         margin-top: 8rem;
       }
     }

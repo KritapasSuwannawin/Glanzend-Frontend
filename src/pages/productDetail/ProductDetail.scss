@@ -237,6 +237,12 @@
             }
 
             &__buy-btn,
+            &__add-to-cart-btn,
+            &__out-of-stock-btn {
+              border-radius: 0.15rem;
+            }
+
+            &__buy-btn,
             &__add-to-cart-btn {
               &:hover {
                 cursor: pointer;

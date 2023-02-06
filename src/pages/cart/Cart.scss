@@ -117,8 +117,11 @@
   @media (max-width: 600px) {
     .main-container {
       flex-direction: column;
+      margin-bottom: 8rem;
 
       &__left {
+        margin-bottom: 6rem;
+
         .card:first-child {
           padding-top: 0;
         }

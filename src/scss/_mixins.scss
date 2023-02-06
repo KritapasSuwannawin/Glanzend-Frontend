@@ -110,6 +110,7 @@
   display: block;
   width: fit-content;
   font-size: $font-size;
+  border-radius: 0.15rem;
 
   @if $style == 'regular' {
     color: $color-primary;

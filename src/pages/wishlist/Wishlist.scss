@@ -72,6 +72,8 @@
 
   @media (max-width: 600px) {
     .card-container {
+      margin-bottom: 8rem;
+
       .card:first-child {
         padding-top: 0;
       }
@@ -80,6 +82,7 @@
     .add-to-cart {
       flex-direction: column-reverse;
       align-items: flex-start;
+      margin-top: 6rem;
 
       &__in-stock {
         margin-bottom: 2rem;

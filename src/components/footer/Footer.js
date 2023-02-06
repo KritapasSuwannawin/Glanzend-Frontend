@@ -32,33 +32,33 @@ function Footer(props) {
         <div className="footer__right">
           <div className="column">
             <p className="column__title">Company</p>
-            <p to="/about" className="column__link">
+            <Link to="#" className="column__link">
               About Us
-            </p>
-            <p to="/contact" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Contact Us
-            </p>
-            <p to="/policy" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Privacy Policy
-            </p>
-            <p to="/press" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Press
-            </p>
+            </Link>
           </div>
           <div className="column">
             <p className="column__title">Information</p>
-            <p to="/info/faq" className="column__link">
+            <Link to="#" className="column__link">
               FAQ
-            </p>
-            <p to="/info/term" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Terms
-            </p>
-            <p to="/info/delivery" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Delivery Info
-            </p>
-            <p to="/info/size" className="column__link">
+            </Link>
+            <Link to="#" className="column__link">
               Size Guide
-            </p>
+            </Link>
           </div>
           <div className="column">
             <p className="column__title">Order</p>
@@ -71,9 +71,9 @@ function Footer(props) {
             <Link to="/account" className="column__link">
               My Account
             </Link>
-            <p to="/shipping" className="column__link">
+            <Link to="/account" className="column__link">
               Shipping
-            </p>
+            </Link>
           </div>
         </div>
       </div>
