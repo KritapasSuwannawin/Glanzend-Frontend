@@ -19,7 +19,7 @@ function Nav(props) {
 
   function searchSubmitHandler(e) {
     e.preventDefault();
-    const search = e.target[0].value.trim().split(' ').join('_');
+    const search = e.target[0].value.trim().toLowerCase().split(' ').join('_');
 
     setShowSearchBar(false);
 
