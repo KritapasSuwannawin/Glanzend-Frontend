@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 
 import { accountActions } from '../../store/accountSlice';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import OrderCard from '../../components/orderCard/OrderCard';
 import './Account.scss';
@@ -177,7 +176,6 @@ function Account(props) {
 
   return (
     <div className="account">
-      <Nav></Nav>
       <div className="title-container">
         <p className="title">My Account</p>
       </div>

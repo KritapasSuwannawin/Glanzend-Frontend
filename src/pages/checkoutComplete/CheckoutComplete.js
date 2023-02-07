@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { accountActions } from '../../store/accountSlice';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import './CheckoutComplete.scss';
 
@@ -17,7 +16,6 @@ function CheckoutComplete(props) {
 
   return (
     <div className="checkout-complete">
-      <Nav></Nav>
       <div className="landing">
         <p className="landing__title">Checkout Completed!</p>
         <p className="landing__desc">

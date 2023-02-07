@@ -5,7 +5,6 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import deliveryTruckIcon from '../../icon/Delivery Truck Icon.svg';
 import returnIcon from '../../icon/Return Icon.svg';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import './Checkout.scss';
 
@@ -128,7 +127,6 @@ function Checkout(props) {
 
   return (
     <div className="checkout">
-      <Nav></Nav>
       <div className="title-container">
         <p className="title">Checkout</p>
       </div>

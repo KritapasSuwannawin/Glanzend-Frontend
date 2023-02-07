@@ -5,7 +5,7 @@
     @include section-style;
 
     .title {
-      @include title-page-style('no-padding-top');
+      @include title-page-style;
     }
   }
 

@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { resourceActions } from './store/resourceSlice';
 import { accountActions } from './store/accountSlice';
 
+import Nav from './components/nav/Nav';
 import Home from './pages/home/Home';
 import Product from './pages/product/Product';
 import ProductDetail from './pages/productDetail/ProductDetail';
@@ -18,11 +19,6 @@ import Account from './pages/account/Account';
 
 function App() {
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/product-startup`, {
@@ -99,19 +95,22 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/product" element={<Product></Product>}></Route>
-      <Route path="/product/:id" element={<ProductDetail></ProductDetail>}></Route>
-      <Route path="/register" element={<Register></Register>}></Route>
-      <Route path="/login" element={<Login></Login>}></Route>
-      <Route path="/wishlist" element={<Wishlist></Wishlist>}></Route>
-      <Route path="/cart" element={<Cart></Cart>}></Route>
-      <Route path="/cart/checkout" element={<Checkout></Checkout>}></Route>
-      <Route path="/cart/checkout/complete" element={<CheckoutComplete></CheckoutComplete>}></Route>
-      <Route path="/account" element={<Account></Account>}></Route>
-      <Route path="/*" element={<Navigate replace to="/"></Navigate>}></Route>
-    </Routes>
+    <>
+      <Nav></Nav>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/product" element={<Product></Product>}></Route>
+        <Route path="/product/:id" element={<ProductDetail></ProductDetail>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/wishlist" element={<Wishlist></Wishlist>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
+        <Route path="/cart/checkout" element={<Checkout></Checkout>}></Route>
+        <Route path="/cart/checkout/complete" element={<CheckoutComplete></CheckoutComplete>}></Route>
+        <Route path="/account" element={<Account></Account>}></Route>
+        <Route path="/*" element={<Navigate replace to="/"></Navigate>}></Route>
+      </Routes>
+    </>
   );
 }
 

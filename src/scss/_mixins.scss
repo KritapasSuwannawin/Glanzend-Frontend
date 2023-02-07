@@ -24,8 +24,8 @@
     }
 
     @media (max-width: 600px) {
-      padding-left: 2.75rem;
-      padding-right: 2.75rem;
+      padding-left: 1.8rem;
+      padding-right: 1.8rem;
     }
   }
 
@@ -88,17 +88,14 @@
   }
 }
 
-@mixin title-page-style($style: 'normal') {
+@mixin title-page-style {
   @include title-style;
   padding-top: 6rem;
   margin-bottom: 10rem;
   margin-left: -0.3rem;
 
   @media (max-width: 600px) {
-    @if $style == 'no-padding-top' {
-      padding-top: 0;
-    }
-
+    padding-top: 0;
     margin-bottom: 6rem;
   }
 }

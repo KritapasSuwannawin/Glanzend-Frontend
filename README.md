@@ -9,5 +9,6 @@ Libraries used include:
 - ReactJS
 - React Router
 - Redux Toolkit
+- React Transition Group
 
 The website can be accessed at https://glanzend.netlify.app

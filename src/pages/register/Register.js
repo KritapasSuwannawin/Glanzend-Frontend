@@ -5,7 +5,6 @@ import AES from 'crypto-js/aes';
 
 import { accountActions } from '../../store/accountSlice';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 
 import './Register.scss';
@@ -88,7 +87,6 @@ function Register(props) {
 
   return (
     <div className="register">
-      <Nav></Nav>
       <div className="form-container">
         <form className="form" onSubmit={formSubmitHandler}>
           <p className="form__title">Register</p>

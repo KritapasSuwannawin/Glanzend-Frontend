@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { productActions } from '../../store/productSlice';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import ProductSidebar from '../../components/productSidebar/ProductSidebar';
 import ProductItemCard from '../../components/productItemCard/ProductItemCard';
@@ -135,7 +134,6 @@ function Product(props) {
 
   return (
     <div className="product">
-      <Nav></Nav>
       <div className="main-container">
         <div className="main">
           <p className="main__title">Our Products</p>

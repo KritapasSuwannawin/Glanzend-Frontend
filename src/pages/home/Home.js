@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import snowIcon from '../../icon/Snow Icon.svg';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import './Home.scss';
 
@@ -13,11 +12,10 @@ function Home() {
 
   return (
     <div className="home">
-      <Nav></Nav>
       <div className="landing-container">
         <div className="landing">
           <p className="landing__title">
-            Sprakling on<br></br>your body.
+            Sparkling on<br></br>your body.
           </p>
           <p className="landing__desc">
             Best quality jewelry products are available in our website.<br></br>Never go out of the style with our new featured collections.

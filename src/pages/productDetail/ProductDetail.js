@@ -6,7 +6,6 @@ import { accountActions } from '../../store/accountSlice';
 
 import heartIcon from '../../icon/Heart Icon.svg';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import SimilarProductContainer from '../../components/similarProductContainer/SimilarProductContainer';
 import './ProductDetail.scss';
@@ -266,7 +265,6 @@ function ProductDetail(props) {
 
   return (
     <div className="product-detail">
-      <Nav></Nav>
       <div className="title-container">
         <p className="title">Product Details</p>
       </div>

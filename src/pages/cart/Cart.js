@@ -4,7 +4,6 @@ import { useNavigate, Navigate } from 'react-router-dom';
 
 import { accountActions } from '../../store/accountSlice';
 
-import Nav from '../../components/nav/Nav';
 import Footer from '../../components/footer/Footer';
 import ItemCard from '../../components/itemCard/ItemCard';
 import SimilarProductContainer from '../../components/similarProductContainer/SimilarProductContainer';
@@ -207,7 +206,6 @@ function Cart(props) {
 
   return (
     <div className="cart">
-      <Nav></Nav>
       <div className="title-container">
         <p className="title">My Cart</p>
       </div>
