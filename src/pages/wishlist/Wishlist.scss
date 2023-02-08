@@ -38,6 +38,10 @@
     .card {
       padding: 3.3rem 0;
       border-bottom: 1px solid $color-primary;
+
+      &:first-child {
+        padding-top: 0;
+      }
     }
   }
 
@@ -73,10 +77,6 @@
   @media (max-width: 600px) {
     .card-container {
       margin-bottom: 8rem;
-
-      .card:first-child {
-        padding-top: 0;
-      }
     }
 
     .add-to-cart {

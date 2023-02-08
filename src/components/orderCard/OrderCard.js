@@ -88,7 +88,7 @@ function OrderCard(props) {
           {lineItemArr.map((item) => (
             <div key={item.id} className="body__item-card">
               <div className="body__item-card--left">
-                <div className="img"></div>
+                <img className="img" src={item.img_url} alt=""></img>
                 <Link to={`/product/${item.product_id}`} className="name">
                   {item.product_name} ({item.size_name})
                 </Link>

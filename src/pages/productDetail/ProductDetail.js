@@ -26,6 +26,7 @@ function ProductDetail(props) {
   const [price, setPrice] = useState();
   const [categoryID, setCategoryID] = useState();
   const [collectionID, setCollectionID] = useState();
+  const [imgURL, setimgURL] = useState();
   const [colorIDArr, setColorIDArr] = useState([]);
   const [sizeIDArr, setSizeIDArr] = useState([]);
   const [isInStock, setIsInStock] = useState();
@@ -65,6 +66,7 @@ function ProductDetail(props) {
           size_id_arr: sizeIDArr,
           category_id: categoryID,
           collection_id: collectionID,
+          img_url: imgURL,
           name,
           price,
         } = data.product;
@@ -73,6 +75,7 @@ function ProductDetail(props) {
         setPrice(price);
         setCategoryID(categoryID);
         setCollectionID(collectionID);
+        setimgURL(imgURL);
         setColorIDArr(colorIDArr);
         setSizeIDArr(sizeIDArr);
         setIsInStock(isInStock);
@@ -272,7 +275,7 @@ function ProductDetail(props) {
         <div className="detail-container">
           <div className="detail">
             <div className="detail__left">
-              <div className="detail__left--main-img"></div>
+              <img className="detail__left--main-img" src={imgURL} alt=""></img>
               <div className="detail__left--small-img-container">
                 <div className="small-img"></div>
                 <div className="small-img"></div>

@@ -149,6 +149,7 @@ function Product(props) {
                       collectionID={product.collection_id}
                       sizeIDArr={product.size_id_arr}
                       price={product.price}
+                      imgURL={product.img_url}
                     ></ProductItemCard>
                   </div>
                 ))}

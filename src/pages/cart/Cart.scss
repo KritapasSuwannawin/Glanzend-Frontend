@@ -41,6 +41,10 @@
       .card {
         padding: 3.3rem 0;
         border-bottom: 1px solid $color-primary;
+
+        &:first-child {
+          padding-top: 0;
+        }
       }
     }
 
@@ -121,10 +125,6 @@
 
       &__left {
         margin-bottom: 6rem;
-
-        .card:first-child {
-          padding-top: 0;
-        }
       }
 
       &__right {

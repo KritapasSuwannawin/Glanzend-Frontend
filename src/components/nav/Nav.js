@@ -16,6 +16,7 @@ function Nav(props) {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
 
   useEffect(() => {
+    setShowSearchBar(false);
     setShowHamburgerMenu(false);
   }, [pathname]);
 

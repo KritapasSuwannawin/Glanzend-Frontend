@@ -22,6 +22,7 @@ function ItemCard(props) {
     is_in_stock: isInStock,
     is_checked: isChecked,
     type,
+    img_url: imgURL,
   } = item;
 
   const dispatch = useDispatch();
@@ -121,7 +122,7 @@ function ItemCard(props) {
           defaultChecked={isChecked}
         ></input>
         <div className="left__img-container">
-          <div className="img"></div>
+          <img className="img" src={imgURL} alt=""></img>
         </div>
         <img src={crossIcon} alt="" className="left__icon" onClick={crossClickHandler}></img>
         <div className="left__detail-container">

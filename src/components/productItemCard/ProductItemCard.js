@@ -6,7 +6,7 @@ import shoppingBagIcon from '../../icon/Shopping Bag Icon.svg';
 import './ProductItemCard.scss';
 
 function ProductItemCard(props) {
-  const { id, name, collectionID, sizeIDArr, price } = props;
+  const { id, name, collectionID, sizeIDArr, price, imgURL } = props;
 
   const collectionArr = useSelector((store) => store.resource.collectionArr);
   const sizeArr = useSelector((store) => store.resource.sizeArr);
@@ -31,7 +31,9 @@ function ProductItemCard(props) {
 
   return (
     <div className="product-item-card">
-      <Link to={`/product/${id}`} className="product-item-card__img"></Link>
+      <Link to={`/product/${id}`}>
+        <img src={imgURL} alt="" className="product-item-card__img"></img>
+      </Link>
       <Link to={`/product?collection_id=${collectionID}`} className="product-item-card__collection">
         {mapCollectionIDToName(collectionID)}
       </Link>

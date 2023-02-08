@@ -28,7 +28,9 @@ function SimilarProductContainer(props) {
           <div className="similar-product__card-container">
             {similarProductArr.map((product, i) => (
               <div className="card" key={i}>
-                <Link to={`/product/${product.id}`} className="card__img"></Link>
+                <Link to={`/product/${product.id}`}>
+                  <img className="card__img" src={product.img_url} alt=""></img>
+                </Link>
                 {collectionArr.length > 0 && (
                   <Link to={`/product?collection_id=${product.collection_id}`} className="card__collection">
                     {getCollectionNameFromID(product.collection_id)}

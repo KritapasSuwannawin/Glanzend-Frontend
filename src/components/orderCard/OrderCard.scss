@@ -84,6 +84,7 @@
         .img {
           width: 5rem;
           height: 5.5rem;
+          object-fit: cover;
           background-color: $box-color-light;
           margin-right: 2rem;
         }

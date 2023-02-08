@@ -66,12 +66,12 @@ function Home() {
           <div className="category__card-container">
             {categoryArr.slice(0, 3).map((category) => (
               <Link to={`/product?category_id=${category.id}`} className="card" key={category.id}>
-                <div className="card__img"></div>
+                <img className="card__img" src={category.img_url} alt=""></img>
                 <p className="card__name">{category.name}</p>
               </Link>
             ))}
             <Link to="/product" className="card">
-              <div className="card__img"></div>
+              <img className="card__img" src={categoryArr.length > 0 ? categoryArr[3].img_url : ''} alt=""></img>
               <p className="card__name">View All</p>
             </Link>
           </div>
@@ -85,7 +85,7 @@ function Home() {
           <div className="collection__card-container">
             {collectionArr.slice(0, 3).map((collection) => (
               <Link to={`/product?collection_id=${collection.id}`} className="card" key={collection.id}>
-                <div className="card__img"></div>
+                <img className="card__img" src={collection.img_url} alt=""></img>
                 <p className="card__name">{collection.name}</p>
               </Link>
             ))}

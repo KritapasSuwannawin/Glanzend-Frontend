@@ -21,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/product-startup`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/startup`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,29 +35,11 @@ function App() {
           throw new Error(message);
         }
 
-        const { colorArr, sizeArr } = data;
-        dispatch(resourceActions.setColorArr(colorArr));
-        dispatch(resourceActions.setSizeArr(sizeArr));
-      })
-      .catch((err) => console.log(err));
-
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/home-startup`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        const { status, data, message } = json;
-
-        if (status === 'error') {
-          throw new Error(message);
-        }
-
-        const { categoryArr, collectionArr } = data;
+        const { categoryArr, collectionArr, colorArr, sizeArr } = data;
         dispatch(resourceActions.setCategoryArr(categoryArr));
         dispatch(resourceActions.setCollectionArr(collectionArr));
+        dispatch(resourceActions.setColorArr(colorArr));
+        dispatch(resourceActions.setSizeArr(sizeArr));
       })
       .catch((err) => console.log(err));
 
