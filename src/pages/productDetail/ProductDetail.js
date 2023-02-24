@@ -42,12 +42,7 @@ function ProductDetail(props) {
   useEffect(() => {
     let cancel = false;
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${productID}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product/${productID}`)
       .then((res) => res.json())
       .then((json) => {
         if (cancel) {
@@ -84,7 +79,7 @@ function ProductDetail(props) {
         setColorID(colorIDArr[0]);
         setSizeID(sizeIDArr[0]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
 
     return () => {
       cancel = true;
@@ -98,12 +93,7 @@ function ProductDetail(props) {
       return;
     }
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product?category_id=${categoryID}&limit=5`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product?category_id=${categoryID}&limit=5`)
       .then((res) => res.json())
       .then((json) => {
         if (cancel) {
@@ -119,7 +109,7 @@ function ProductDetail(props) {
         const { productArr } = data;
         setSimilarProductArr(productArr.filter((product) => product.id !== Number(productID)).slice(0, 4));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
 
     return () => {
       cancel = true;
@@ -193,7 +183,7 @@ function ProductDetail(props) {
           return;
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
 
   function addToCartHandler() {
@@ -229,7 +219,7 @@ function ProductDetail(props) {
           return;
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
 
   function buyHandler() {

@@ -30,12 +30,7 @@ function Account(props) {
     let cancel = false;
 
     if (accountID && firstNameRef.current) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account?id=${accountID}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account?id=${accountID}`)
         .then((res) => res.json())
         .then((json) => {
           const { status, data, message } = json;
@@ -54,14 +49,9 @@ function Account(props) {
           phone_number && (phoneNumberRef.current.value = phone_number);
           email && (emailRef.current.value = email);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
 
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=order_id_arr`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=order_id_arr`)
         .then((res) => res.json())
         .then((json) => {
           if (cancel) {
@@ -79,7 +69,7 @@ function Account(props) {
 
           setIsDoneStartup(true);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     }
 
     return () => {
@@ -95,12 +85,7 @@ function Account(props) {
     }
 
     if (orderIDArr.length > 0 && accountID) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/sale-order?order_id_arr=${orderIDArr}&account_id=${accountID}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/sale-order?order_id_arr=${orderIDArr}&account_id=${accountID}`)
         .then((res) => res.json())
         .then((json) => {
           if (cancel) {
@@ -116,7 +101,7 @@ function Account(props) {
           const { orderInfo } = data;
           setOrderArr(orderInfo);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     } else {
       setOrderArr([]);
     }
@@ -163,11 +148,15 @@ function Account(props) {
           throw new Error(message);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
 
   function logoutHandler() {
-    dispatch(accountActions.logoutHandler());
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/logout`, {
+      credentials: 'include',
+    })
+      .then(() => dispatch(accountActions.logoutHandler()))
+      .catch((err) => console.log(err.message));
   }
 
   if (!accountID) {

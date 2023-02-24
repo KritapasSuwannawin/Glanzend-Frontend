@@ -84,7 +84,7 @@ function ItemCard(props) {
         column,
         value,
       }),
-    }).catch((err) => console.log(err));
+    }).catch((err) => console.log(err.message));
   }
 
   function crossClickHandler() {
@@ -108,7 +108,7 @@ function ItemCard(props) {
         accountID,
         type,
       }),
-    }).catch((err) => console.log(err));
+    }).catch((err) => console.log(err.message));
   }
 
   return (

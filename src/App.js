@@ -22,10 +22,7 @@ function App() {
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/resource/startup`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then((json) => {
@@ -35,45 +32,16 @@ function App() {
           throw new Error(message);
         }
 
-        const { categoryArr, collectionArr, colorArr, sizeArr } = data;
+        const { categoryArr, collectionArr, colorArr, sizeArr, userId } = data;
+
         dispatch(resourceActions.setCategoryArr(categoryArr));
         dispatch(resourceActions.setCollectionArr(collectionArr));
         dispatch(resourceActions.setColorArr(colorArr));
         dispatch(resourceActions.setSizeArr(sizeArr));
+
+        userId && dispatch(accountActions.setID(userId));
       })
-      .catch((err) => console.log(err));
-
-    const email = localStorage.getItem('glanzend-email');
-    const encryptedPassword = localStorage.getItem('glanzend-password');
-
-    if (email && encryptedPassword) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, encryptedPassword }),
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const { status, data, message } = json;
-
-          if (status === 'error') {
-            throw new Error(message);
-          }
-
-          if (status === 'fail') {
-            localStorage.removeItem('glanzend-email');
-            localStorage.removeItem('glanzend-password');
-            return;
-          }
-
-          const { id } = data;
-
-          dispatch(accountActions.setID(id));
-        })
-        .catch((err) => console.log(err));
-    }
+      .catch((err) => console.log(err.message));
   }, [dispatch]);
 
   return (

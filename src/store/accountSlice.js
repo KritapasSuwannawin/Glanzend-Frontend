@@ -35,9 +35,6 @@ const accountSlice = createSlice({
       state.orderIDArr = action.payload;
     },
     logoutHandler(state, action) {
-      localStorage.removeItem('glanzend-email');
-      localStorage.removeItem('glanzend-password');
-
       state.id = undefined;
       state.wishlistLineItemIDArr = [];
       state.cartLineItemIDArr = [];

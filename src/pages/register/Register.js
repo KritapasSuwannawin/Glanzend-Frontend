@@ -15,8 +15,9 @@ function Register(props) {
 
   const accountID = useSelector((store) => store.account.id);
 
-  const [isInvalidPassword, setIsInValidPassword] = useState(false);
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+  const [isPasswordNotMatch, setIsPasswordNotMatch] = useState(false);
+  const [isPasswordTooShort, setIsPasswordTooShort] = useState(false);
 
   useEffect(() => {
     if (accountID) {
@@ -27,32 +28,41 @@ function Register(props) {
   function formSubmitHandler(e) {
     e.preventDefault();
 
+    setIsInvalidEmail(false);
+    setIsPasswordNotMatch(false);
+    setIsPasswordTooShort(false);
+
     // const password = e.target[4].value;
     // const confirmPassword = e.target[5].value;
-    const password = e.target[3].value;
-    const confirmPassword = e.target[4].value;
+    const password = e.target[2].value.trim();
+    const confirmPassword = e.target[3].value.trim();
 
     if (password !== confirmPassword) {
-      setIsInValidPassword(true);
+      setIsPasswordNotMatch(true);
       return;
-    } else {
-      setIsInValidPassword(false);
     }
 
-    const firstName = e.target[0].value;
-    const lastName = e.target[1].value;
+    if (password.length < 8) {
+      setIsPasswordTooShort(true);
+      return;
+    }
+
+    const [firstName, lastName] = e.target[0].value.trim().split(' ');
+    // const firstName = e.target[0].value;
+    // const lastName = e.target[1].value;
     // const phoneNumber = e.target[2].value;
     // const email = e.target[3].value;
-    const email = e.target[2].value;
+    const email = e.target[1].value.trim();
 
     const encryptedPassword = AES.encrypt(password, process.env.REACT_APP_PRIVATE_KEY).toString();
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/register`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName, lastName, phoneNumber: '', email, encryptedPassword }),
+      body: JSON.stringify({ firstName, lastName: lastName || '', phoneNumber: '', email, encryptedPassword }),
     })
       .then((res) => res.json())
       .then((json) => {
@@ -65,20 +75,16 @@ function Register(props) {
         if (status === 'fail') {
           if (message === 'This email was already used') {
             setIsInvalidEmail(true);
-          } else {
-            setIsInvalidEmail(false);
           }
+
           return;
         }
-
-        localStorage.setItem('glanzend-email', email);
-        localStorage.setItem('glanzend-password', encryptedPassword);
 
         const { id } = data;
 
         dispatch(accountActions.setID(id));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
 
   function loginClickHandler() {
@@ -92,6 +98,12 @@ function Register(props) {
           <p className="form__title">Register</p>
           <div className="form__top">
             <div className="form__top--input-container">
+              <label className="label" htmlFor="name">
+                Enter your name
+              </label>
+              <input className="input" type="text" id="name" required></input>
+            </div>
+            {/* <div className="form__top--input-container">
               <label className="label" htmlFor="first-name">
                 Enter your first name
               </label>
@@ -102,14 +114,14 @@ function Register(props) {
                 Enter your last name
               </label>
               <input className="input" type="text" id="last-name" required></input>
-            </div>
+            </div> */}
             {/* <div className="form__top--input-container">
               <label className="label" htmlFor="phone-number">
                 Enter your phone number
               </label>
               <input className="input" type="tel" id="phone-number" required></input>
             </div> */}
-            <div className={`form__top--input-container ${isInvalidEmail ? 'invalid-email' : ''}`}>
+            <div className={`form__top--input-container ${isInvalidEmail ? 'invalid-email' : ''} `}>
               <label className="label" htmlFor="email">
                 Enter your email
               </label>
@@ -121,24 +133,32 @@ function Register(props) {
                 autoComplete="username"
               ></input>
             </div>
-            <div className={`form__top--input-container ${isInvalidPassword ? 'invalid-password' : ''}`}>
+            <div
+              className={`form__top--input-container ${isPasswordNotMatch ? 'password-not-match' : ''} ${
+                isPasswordTooShort ? 'password-too-short' : ''
+              }`}
+            >
               <label className="label" htmlFor="password">
                 Enter your password
               </label>
               <input
-                className={`input ${isInvalidPassword ? 'invalid' : ''}`}
+                className={`input ${isPasswordNotMatch || isPasswordTooShort ? 'invalid' : ''}`}
                 type="password"
                 id="password"
                 required
                 autoComplete="new-password"
               ></input>
             </div>
-            <div className={`form__top--input-container ${isInvalidPassword ? 'invalid-password' : ''}`}>
+            <div
+              className={`form__top--input-container ${isPasswordNotMatch ? 'password-not-match' : ''} ${
+                isPasswordTooShort ? 'password-too-short' : ''
+              }`}
+            >
               <label className="label" htmlFor="confirm-password">
                 Confirm your password
               </label>
               <input
-                className={`input ${isInvalidPassword ? 'invalid' : ''}`}
+                className={`input ${isPasswordNotMatch || isPasswordTooShort ? 'invalid' : ''}`}
                 type="password"
                 id="confirm-password"
                 required

@@ -25,12 +25,12 @@
 
         &--input-container {
           &.invalid-email,
-          &.invalid-password {
+          &.invalid-password,
+          &.password-too-short {
             position: relative;
 
             &::after {
               position: absolute;
-              content: '** This email was already used';
               color: $error-color;
               font-weight: 500;
               font-size: 1.2rem;
@@ -47,6 +47,18 @@
           &.invalid-password {
             &::after {
               content: '** Invalid password';
+            }
+          }
+
+          &.password-too-short {
+            &::after {
+              white-space: nowrap;
+              content: '** Password should have at least 8 characters';
+
+              @media (max-width: 600px) {
+                bottom: -1.8rem;
+                font-size: 1.1rem;
+              }
             }
           }
 

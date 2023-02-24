@@ -33,12 +33,7 @@ function Checkout(props) {
 
   useEffect(() => {
     if (accountID && firstNameRef.current) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account?id=${accountID}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account?id=${accountID}`)
         .then((res) => res.json())
         .then((json) => {
           const { status, data, message } = json;
@@ -57,7 +52,7 @@ function Checkout(props) {
           phone_number && (phoneNumberRef.current.value = phone_number);
           email && (emailRef.current.value = email);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     }
   }, [accountID]);
 
@@ -113,7 +108,7 @@ function Checkout(props) {
 
         navigate('/cart/checkout/complete', { replace: true });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err.message))
       .finally(() => setIsFetching(false));
   }
 
@@ -183,7 +178,7 @@ function Checkout(props) {
             <div className="summary__order--item-container">
               {checkoutItemArr.map((item) => (
                 <div key={item.id || Math.random()} className="card">
-                  <div className="card__img"></div>
+                  <img className="card__img" src={item.img_url} alt=""></img>
                   <div className="card__detail">
                     <Link to={`/product?collection_id=${item.collection_id}`} className="card__detail--collection">
                       {getCollectionNameFromID(item.collection_id)}

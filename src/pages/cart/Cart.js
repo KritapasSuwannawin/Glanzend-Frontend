@@ -27,12 +27,7 @@ function Cart(props) {
     let cancel = false;
 
     if (accountID) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=cart_line_item_id_arr`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/column?account_id=${accountID}&column=cart_line_item_id_arr`)
         .then((res) => res.json())
         .then((json) => {
           if (cancel) {
@@ -50,7 +45,7 @@ function Cart(props) {
 
           setIsDoneStartup(true);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     }
 
     return () => {
@@ -67,13 +62,7 @@ function Cart(props) {
 
     if (cartLineItemIDArr.length > 0 && accountID) {
       fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/account/line-item?line_item_id_arr=${cartLineItemIDArr}&type=cart&account_id=${accountID}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        `${process.env.REACT_APP_BACKEND_URL}/api/account/line-item?line_item_id_arr=${cartLineItemIDArr}&type=cart&account_id=${accountID}`
       )
         .then((res) => res.json())
         .then((json) => {
@@ -90,7 +79,7 @@ function Cart(props) {
           const { lineItemInfo } = data;
           setCartLineItemArr(lineItemInfo);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     } else {
       setCartLineItemArr([]);
     }
@@ -120,12 +109,7 @@ function Cart(props) {
   useEffect(() => {
     let cancel = false;
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product?limit=${cartLineItemIDArr.length + 4}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product?limit=${cartLineItemIDArr.length + 4}`)
       .then((res) => res.json())
       .then((json) => {
         if (cancel) {
@@ -141,7 +125,7 @@ function Cart(props) {
         const { productArr } = data;
         setSimilarProductArr(productArr.filter((product) => !cartLineItemIDArr.includes(product.id)).slice(0, 4));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
 
     return () => {
       cancel = true;

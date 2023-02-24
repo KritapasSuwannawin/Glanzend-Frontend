@@ -26,12 +26,12 @@
 
         &--input-container {
           &.invalid-email,
-          &.invalid-password {
+          &.password-not-match,
+          &.password-too-short {
             position: relative;
 
             &::after {
               position: absolute;
-              content: '** This email was already used';
               color: $error-color;
               font-weight: 500;
               font-size: 1.2rem;
@@ -45,9 +45,18 @@
             }
           }
 
-          &.invalid-password {
+          &.password-not-match {
             &::after {
               content: '** Passwords do not match';
+            }
+          }
+
+          &.password-too-short {
+            &::after {
+              bottom: -1.8rem;
+              font-size: 1.1rem;
+              white-space: nowrap;
+              content: '** Password should have at least 8 characters';
             }
           }
 

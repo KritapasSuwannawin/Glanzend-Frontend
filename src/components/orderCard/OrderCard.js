@@ -28,15 +28,7 @@ function OrderCard(props) {
   useEffect(() => {
     let cancel = false;
 
-    fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/api/account/line-item?line_item_id_arr=${lineItemIDArr}&type=order&account_id=${accountID}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/account/line-item?line_item_id_arr=${lineItemIDArr}&type=order&account_id=${accountID}`)
       .then((res) => res.json())
       .then((json) => {
         if (cancel) {
@@ -52,7 +44,7 @@ function OrderCard(props) {
         const { lineItemInfo } = data;
         setLineItemArr(lineItemInfo);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
 
     return () => {
       cancel = true;

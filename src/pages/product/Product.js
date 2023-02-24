@@ -43,12 +43,7 @@ function Product(props) {
 
     const offsetLimit = `${search.length > 0 ? '&' : '?'}offset=${offset}&limit=${view}`;
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product${search}${offsetLimit}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/product${search}${offsetLimit}`)
       .then((res) => res.json())
       .then((json) => {
         if (cancel) {
@@ -71,7 +66,7 @@ function Product(props) {
           setShowLoadMore(true);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
 
     return () => {
       cancel = true;
